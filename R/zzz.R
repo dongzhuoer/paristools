@@ -3,5 +3,4 @@
 }
 
 .onLoad <- function(libname, pkgname) {
-    
 }

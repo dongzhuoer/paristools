@@ -25,3 +25,11 @@ refer to `vignette('paristools')`.
 1. Refer to this [post](https://dongzhuoer.github.io/_redirects/develop-upon-my-r-package.html)
 
 
+```r
+
+bench::system_time(
+    paristools::read_duplexgroup('inst/extdata/Neat1_1.duplexgroup')
+)
+
+```
+
