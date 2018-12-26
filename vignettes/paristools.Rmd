@@ -1,0 +1,22 @@
+---
+title: "Introduction to paristools"
+author: "Zhuoer Dong"
+date: "`r Sys.Date()`"
+output: prettydoc::html_pretty
+vignette: >
+  %\VignetteIndexEntry{Introduction to paristools}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+```{r}
+library(paristools)
+```
+
+```{r}
+plot(cars)
+```
