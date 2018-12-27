@@ -1,4 +1,7 @@
-
+# common import
+#' @importFrom tibble add_column
+#' @importFrom stringr str_extract str_split str_split_fixed
+NULL
 
 #' @title parse genome location specification in `.duplexgroup` file
 #'
@@ -6,93 +9,107 @@
 #' we assume chr only contains alpha-numeric characters
 #' 
 #' @export
+
+# loc = c('neat1|+:40-69', 'neat1|+:27-50')
 parse_loc <- function(loc) {
     tibble::tibble(
-        chr    = stringr::str_extract(loc, '\\w+'),
-        strand = stringr::str_extract(loc, '[+-]'),
-        start  = stringr::str_extract(loc, '(?<=:)\\d+'),
-        end    = stringr::str_extract(loc, '\\d+$')
+        chr    = str_extract(loc, '\\w+'),
+        strand = str_extract(loc, '[+-]'),
+        start  = str_extract(loc, '(?<=:)\\d+') %>% as.integer(),
+        end    = str_extract(loc, '\\d+$') %>% as.integer()
     )
 }
 
 #' @title parse genome location of left & right segment
 #' 
 #' @export
+
+# locs = c('neat1|+:1-15<=>neat1|-:298-316', 'neat1|+:1-16<=>neat1|+:303-317')
+# sep = '<=>'
 parse_locs <- function(locs, sep) {
-   mat <- stringr::str_split(locs, stringr::fixed(sep), simplify = T) 
-   left <-  mat[, 1] %>% parse_loc %>% tibble::add_column(pair = "left")
-   right <- mat[, 2] %>% parse_loc %>% tibble::add_column(pair = "right")
+   mat <- str_split_fixed(locs, stringr::fixed(sep), 2) 
+   left <-  mat[, 1] %>% parse_loc %>% add_column(pair = "left")
+   right <- mat[, 2] %>% parse_loc %>% add_column(pair = "right")
    dplyr::bind_rows(left, right)
 }
 
 
-
-#' @title parse a duplex group
-#' @section to do: 
-#' here we parse each group separately to run faster, we can add tag to each group, and parse at once
-#' 
-#' @export
-parse_group <- function(group) {
-    lines <- stringr::str_split(group, '\n')[[1]][-2]
-    
-    genome <- stringr::str_extract(lines[1], '(?<=position )[^,]+')
-    reads  <- stringr::str_split(lines[-1], '\t', simplify = T)[ , 3]
-    
-    dplyr::bind_rows(
-        genome %>% parse_locs('|')   %>% tibble::add_column('type' = 'genome'),
-        reads  %>% parse_locs('<=>') %>% tibble::add_column('type' = 'read')
-    ) %>% tibble::add_column(
-        'id' = stringr::str_extract(lines[1], '\\d+'), 
-        'score' = stringr::str_extract(lines[1], '(?<=score )[\\d\\.]+(?=\\.)')
-    )
-}
-
-
 #' @title read `.duplexgroup` file
 #' 
-#' @importFrom stringr str_extract
-#' @export
-read_duplexgroup <- function(path) {
-    path %>% readr::read_file() %>% 
-        stringr::str_split('\n(?=Group )') %>% unlist() %>% 
-        parallel::mclapply(parse_group) %>% dplyr::bind_rows() %>%
-        dplyr::mutate_at(c('start', 'end'), as.integer) %>% 
-        dplyr::mutate_at('score', as.numeric)
-} 
-
-
-#' @title read `.duplexgroup` file
+#' @section implementation:
+#' `read_duplexgroup()` runs quite fast, since we fully utilize R's
+#' vectorisation feature, at the price of _obscured_ code.
+#'
+#' [read_duplexgroup_old()] is much clearer, it parses each group separately.
+#' reading its source can help you understand the implementation.
+#'
+#' In short, the most difficult part is, how to label each row with correct
+#' identifier (group id here) after we concatenate each loc line and
+#' [parse_locs()] at once,
 #' 
 #' @export
  
 # path <- 'inst/extdata/Neat1_1.duplexgroup'
-read_duplexgroup2 <- function(path) {
+read_duplexgroup <- function(path) {
     group <- path %>% readr::read_file() %>% stringr::str_remove_all('\n$') %>% 
-        stringr::str_split('\n(?=Group )') %>% unlist()
-    
-    group_mat <- stringr::str_split_fixed(group, '---', 2)
-    
+        str_split('\n(?=Group )') %>% .[[1]]     # each element is a duplexgroup
+    group_mat <- str_split_fixed(group, '---', 2)       # columns: genome, reads
     
     genome_line <- group_mat[ , 1]
-    reads_lines <- group_mat[ , 2]
+    genome_loc <- genome_line %>% str_extract('(?<=position )[^,]+') 
+    genome_df <- genome_loc %>% parse_locs('|') %>% add_column(type = 'genome')
 
-    id <- genome_line %>% stringr::str_extract('\\d+') 
-    score <- genome_line %>% stringr::str_extract('(?<=score )[\\d\\.]+(?=\\.)') %>% as.double()
+    reads_lines <- group_mat[ , 2] # each element contains multiple reads
+    reads_loc <- reads_lines %>% paste0(collapse = '') %>% 
+        {str_split(., '\n')[[1]][-1]} %>% {str_split_fixed(., '\t', 3)[ , 3]}
+    reads_df <- reads_loc %>% parse_locs('<=>') %>% add_column(type = 'read')
+
+    # `support` stores how many reads each group contains, make sure it's correct
     support <- genome_line %>% str_extract('(?<=support )[\\d]+') %>% as.integer()
-        
     if (!identical(stringr::str_count(reads_lines, '\n'), support))
         stop('number of chimeric reads mismatch group support value')
-
- dplyr::bind_rows(
-    dplyr::bind_cols(
-        genome_line %>% stringr::str_extract('(?<=position )[^,]+') %>% parse_locs('|') %>% tibble::add_column(type = 'genome'),
-        list(id = id, score = score) %>% purrr::map_dfc(rep, times = 2)
-    )
-    ,
-    dplyr::bind_cols(
-        reads_lines %>% paste0(collapse = '') %>% stringr::str_split('\n') %>% .[[1]] %>% .[-1] %>% stringr::str_split_fixed('\t', 3) %>% .[ , 3] %>% parse_locs('<=>')%>% tibble::add_column(type = 'read'),
-        list(id = id, score = score) %>% purrr::map(rep, times = support) %>% purrr::map_dfc(rep, times = 2)
-    ) 
- ) %>% dplyr::arrange(id, type) %>% dplyr::mutate_at(dplyr::vars(start, end), as.integer)
+    
+    # the difficult part: label each row with correct identifier
+    id <- genome_line %>% str_extract('\\d+') 
+    score <- genome_line %>% str_extract('(?<=score )[\\d\\.]+(?=\\.)') %>% as.double()
+    tag_df <- tibble::tibble(id = id, score = score);
+    
+    genome_tag_idx <- seq_along(id) %>% rep(times = 2)
+    reads_tag_idx <- seq_along(id) %>% rep(times = support) %>% rep(times = 2)
+    dplyr::bind_rows(
+        dplyr::bind_cols(genome_df, tag_df[genome_tag_idx, ]),
+        dplyr::bind_cols(reads_df, tag_df[reads_tag_idx, ])
+     ) %>% dplyr::arrange(id, type)
 }
+
+
+# obsolete ------------------------------
+
+
+#' @title read `.duplexgroup` file
+#' 
+#' @keywords internal
+read_duplexgroup_old <- function(path) {
+    # parse a duplex group
+    parse_group <- function(group) {
+        lines <- stringr::str_split(group, '\n')[[1]][-2]
+        
+        genome <- stringr::str_extract(lines[1], '(?<=position )[^,]+')
+        reads  <- stringr::str_split(lines[-1], '\t', simplify = T)[ , 3]
+        
+        dplyr::bind_rows(
+            genome %>% parse_locs('|')   %>% tibble::add_column('type' = 'genome'),
+            reads  %>% parse_locs('<=>') %>% tibble::add_column('type' = 'read')
+        ) %>% tibble::add_column(
+            'id' = stringr::str_extract(lines[1], '\\d+'), 
+            'score' = stringr::str_extract(lines[1], '(?<=score )[\\d\\.]+(?=\\.)')
+        )
+    }
+    
+    path %>% readr::read_file() %>% 
+        stringr::str_split('\n(?=Group )') %>% unlist() %>% 
+        parallel::mclapply(parse_group) %>% dplyr::bind_rows() %>%
+        dplyr::mutate_at('score', as.numeric)
+} 
+
 
