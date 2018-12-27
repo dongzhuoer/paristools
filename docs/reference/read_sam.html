@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>read <code>.duplexgroup</code> file — read_duplexgroup • paristools</title>
+<title>read <code>.sam</code> file — read_sam • paristools</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="read <code>.duplexgroup</code> file — read_duplexgroup" />
+<meta property="og:title" content="read <code>.sam</code> file — read_sam" />
 
-<meta property="og:description" content="read .duplexgroup file" />
+<meta property="og:description" content="We only preserve 11 mandatory fields" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -105,18 +105,18 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>read <code>.duplexgroup</code> file</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dongzhuoer/paristools/blob/master/R/read-dg.R'><code>R/read-dg.R</code></a></small>
-    <div class="hidden name"><code>read_duplexgroup.Rd</code></div>
+    <h1>read <code>.sam</code> file</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dongzhuoer/paristools/blob/master/R/sam.R'><code>R/sam.R</code></a></small>
+    <div class="hidden name"><code>read_sam.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>read <code>.duplexgroup</code> file</p>
+    <p>We only preserve 11 mandatory fields</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>read_duplexgroup</span>(<span class='no'>file</span>)</pre>
+    <pre class="usage"><span class='fu'>read_sam</span>(<span class='no'>file</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -129,36 +129,28 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a tibble of 8 variables</p>
+    <p>a tibble of 11 variables</p>
     
-    <h2 class="hasAnchor" id="implementation"><a class="anchor" href="#implementation"></a>implementation</h2>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    
-    <p><code>read_duplexgroup()</code> runs quite fast, since we fully utilize R's
-vectorisation feature, at the price of <em>obscured</em> code.</p>
-<p><code><a href='read_duplexgroup_old.html'>read_duplexgroup_old()</a></code> is much clearer, it parses each group separately.
-reading its source can help you understand the implementation.</p>
-<p>In short, the most difficult part is, how to label each row with correct
-identifier (group id here) after we concatenate each loc line and
-<code><a href='parse_locs.html'>parse_locs()</a></code> at once,</p>
+    <p>Since <code>.sam</code> file can cantain arbitrary columns after the required 11, and it doesn't contain a header line, I find it hard to use <code><a href='https://readr.tidyverse.org/reference/read_delim.html'>readr::read_tsv()</a></code>. Finally, I use <code><a href='https://www.rdocumentation.org/packages/stringr/topics/str_split'>stringr::str_split_fixed()</a></code> to split the file into 12 columns, the last one which stored extra fields is discarded.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>read_duplexgroup</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>'extdata'</span>, <span class='st'>'Neat1_1.duplexgroup'</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'paristools'</span>))</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 15,964 x 8</span><span>
-#&gt;    chr   strand start   end pair  type   id    score
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> neat1 +          1    15 left  genome 0     0.01 
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> neat1 +         40    50 right genome 0     0.01 
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> neat1 +          1    15 left  read   0     0.01 
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> neat1 +          1    19 left  read   0     0.01 
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> neat1 +         40    69 right read   0     0.01 
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> neat1 +         27    50 right read   0     0.01 
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> neat1 +          1    15 left  genome 1     0.012
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> neat1 +        303   316 right genome 1     0.012
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> neat1 +          1    15 left  read   1     0.012
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> neat1 +          1    16 left  read   1     0.012
-#&gt; </span><span style='color: #949494;'># ... with 15,954 more rows</span><span></div><div class='input'>
-
+    <pre class="examples"><div class='input'><span class='fu'>read_sam</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>'extdata'</span>, <span class='st'>'Neat1_1.Aligend_trunc.sam'</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'paristools'</span>))</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4,996 x 11</span><span>
+#&gt;    QNAME      FLAG RNAME   POS  MAPQ CIGAR  RNEXT PNEXT  TLEN SEQ       QUAL    
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> ST-E0031…     0 neat1  </span><span style='text-decoration: underline;'>2</span><span>691   255 8S20M… *         0     0 TCGTCCCC… JJAJFAJ…
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> ST-E0031…    16 neat1   388   255 4S31M  *         0     0 ACTCGGCA… &lt;-FF&lt;A-…
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> ST-E0031…     0 neat1  </span><span style='text-decoration: underline;'>1</span><span>653   255 2S32M  *         0     0 TTGAGGAA… A&lt;F&lt;-AF…
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> ST-E0031…     0 neat1  </span><span style='text-decoration: underline;'>3</span><span>043     3 5S38M  *         0     0 ATTCCAAT… JJJJJJJ…
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> ST-E0031…   256 neat1  </span><span style='text-decoration: underline;'>2</span><span>534     3 5M504… *         0     0 ATTCCAAT… JJJJJJJ…
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> ST-E0031…     0 neat1  </span><span style='text-decoration: underline;'>2</span><span>979   255 24M9S  *         0     0 TTTTGTGA… JJJJJFJ…
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> ST-E0031…     0 neat1  </span><span style='text-decoration: underline;'>2</span><span>995   255 41M    *         0     0 AAAAGTGG… JJJJJJJ…
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> ST-E0031…     0 neat1   184   255 1S29M  *         0     0 ATCCAAAG… JJJJJJJ…
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> ST-E0031…     0 neat1   227     3 26M70… *         0     0 AGACCAGG… JFJJJJ7…
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> ST-E0031…   256 neat1   227     3 27M6S  *         0     0 AGACCAGG… JFJJJJ7…
+#&gt; </span><span style='color: #949494;'># ... with 4,986 more rows</span><span></div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -168,7 +160,7 @@ identifier (group id here) after we concatenate each loc line and
       
       <li><a href="#value">Value</a></li>
 
-      <li><a href="#implementation">implementation</a></li>
+      <li><a href="#details">Details</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

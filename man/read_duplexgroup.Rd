@@ -4,10 +4,13 @@
 \alias{read_duplexgroup}
 \title{read \code{.duplexgroup} file}
 \usage{
-read_duplexgroup(path)
+read_duplexgroup(file)
 }
 \arguments{
-\item{path.}{string. path to \code{.duplexgroup} file}
+\item{file}{string. path to input file, passed onto \code{\link[readr:read_file]{readr::read_file()}}}
+}
+\value{
+a tibble of 8 variables
 }
 \description{
 read \code{.duplexgroup} file

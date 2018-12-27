@@ -17,5 +17,8 @@ Imports:
     dplyr,
     stringr,
     tibble,
-    readr
+    readr,
+    Rcpp
 VignetteBuilder: knitr, rmarkdown
+LinkingTo: 
+    Rcpp

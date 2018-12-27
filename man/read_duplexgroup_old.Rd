@@ -4,7 +4,7 @@
 \alias{read_duplexgroup_old}
 \title{read \code{.duplexgroup} file}
 \usage{
-read_duplexgroup_old(path)
+read_duplexgroup_old(file)
 }
 \description{
 read \code{.duplexgroup} file

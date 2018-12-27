@@ -13,7 +13,6 @@ NULL
 #' 
 #' @examples 
 #' parse_loc('neat1(+):1-15')
-#' 
 #' parse_loc(c('neat1|+:40-69', 'neat1|+:27-50'))
 #' 
 #' @export
@@ -52,7 +51,9 @@ parse_locs <- function(locs, sep) {
 
 #' @title read `.duplexgroup` file
 #' 
-#' @param path. string. path to `.duplexgroup` file
+#' @param file string. path to input file, passed onto [readr::read_file()]
+#' 
+#' @return a tibble of 8 variables
 #' 
 #' @examples 
 #' read_duplexgroup(system.file('extdata', 'Neat1_1.duplexgroup', package = 'paristools'))
@@ -72,8 +73,8 @@ parse_locs <- function(locs, sep) {
 #' @export
  
 # path <- 'inst/extdata/Neat1_1.duplexgroup'
-read_duplexgroup <- function(path) {
-    group <- path %>% readr::read_file() %>% stringr::str_remove_all('\n$') %>% 
+read_duplexgroup <- function(file) {
+    group <- file %>% readr::read_file() %>% stringr::str_remove_all('\n$') %>% 
         str_split('\n(?=Group )') %>% .[[1]]     # each element is a duplexgroup
     group_mat <- str_split_fixed(group, '---', 2)       # columns: genome, reads
     
@@ -112,7 +113,7 @@ read_duplexgroup <- function(path) {
 #' @title read `.duplexgroup` file
 #' 
 #' @keywords internal
-read_duplexgroup_old <- function(path) {
+read_duplexgroup_old <- function(file) {
     # parse a duplex group
     parse_group <- function(group) {
         lines <- stringr::str_split(group, '\n')[[1]][-2]

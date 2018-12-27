@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>read <code>.duplexgroup</code> file — read_duplexgroup_old • paristools</title>
+<title>read <code>.sam</code> file — read_bed • paristools</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="read <code>.duplexgroup</code> file — read_duplexgroup_old" />
+<meta property="og:title" content="read <code>.sam</code> file — read_bed" />
 
-<meta property="og:description" content="read .duplexgroup file" />
+<meta property="og:description" content="read .sam file" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -105,25 +105,49 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>read <code>.duplexgroup</code> file</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dongzhuoer/paristools/blob/master/R/read-dg.R'><code>R/read-dg.R</code></a></small>
-    <div class="hidden name"><code>read_duplexgroup_old.Rd</code></div>
+    <h1>read <code>.sam</code> file</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dongzhuoer/paristools/blob/master/R/sam.R'><code>R/sam.R</code></a></small>
+    <div class="hidden name"><code>read_bed.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>read <code>.duplexgroup</code> file</p>
+    <p>read <code>.sam</code> file</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>read_duplexgroup_old</span>(<span class='no'>file</span>)</pre>
-        
+    <pre class="usage"><span class='fu'>read_bed</span>(<span class='no'>file</span>, <span class='no'>...</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>file</th>
+      <td><p>string. path to input file, passed onto <code><a href='https://readr.tidyverse.org/reference/read_file.html'>readr::read_file()</a></code></p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>passed on to <code><a href='https://readr.tidyverse.org/reference/read_delim.html'>readr::read_tsv()</a></code></p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
+    <p>a tibble of 6 variables</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='kw'>NULL</span></div><div class='output co'>#&gt; NULL</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-                </ul>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
