@@ -26,9 +26,17 @@ refer to `vignette('paristools')`.
 
 
 ```r
-
+microbenchmark::microbenchmark(
+    times = 10L,
+    read_duplexgroup = paristools::read_duplexgroup('inst/extdata/Neat1_1.duplexgroup'),
+    read_duplexgroup2 = paristools::read_duplexgroup2('inst/extdata/Neat1_1.duplexgroup')
+)
 bench::system_time(
     paristools::read_duplexgroup('inst/extdata/Neat1_1.duplexgroup')
+)
+
+bench::mark(
+    paristools::read_duplexgroup2('inst/extdata/Neat1_1.duplexgroup')
 )
 
 ```
