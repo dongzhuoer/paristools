@@ -42,7 +42,7 @@
         },
         {
             "label": "pkgdown",
-            "command": "R -e 'pkgdown::build_site()'",
+            "command": "R -e 'pkgdown::build_site(document = T)'",
         },
     ]
 }

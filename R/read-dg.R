@@ -3,10 +3,18 @@
 #' @importFrom stringr str_extract str_split str_split_fixed
 NULL
 
+
 #' @title parse genome location specification in `.duplexgroup` file
+#' 
+#' @param loc character
 #'
 #' @details 
 #' we assume chr only contains alpha-numeric characters
+#' 
+#' @examples 
+#' parse_loc('neat1(+):1-15')
+#' 
+#' parse_loc(c('neat1|+:40-69', 'neat1|+:27-50'))
 #' 
 #' @export
 
@@ -20,7 +28,15 @@ parse_loc <- function(loc) {
     )
 }
 
-#' @title parse genome location of left & right segment
+#' @title parse genome location of left & right segments
+#' 
+#' @param locs character
+#' @param sep string. separate left & right segments, passed on to [stringr::fixed()]
+#' 
+#' @examples 
+#' parse_locs('neat1(+):1-15|neat1(-):40-50', '|')
+#' 
+#' parse_locs(c('neat1|+:1-15<=>neat1|-:298-316', 'neat1|+:1-16<=>neat1|+:303-317'), '<=>')
 #' 
 #' @export
 
@@ -35,6 +51,12 @@ parse_locs <- function(locs, sep) {
 
 
 #' @title read `.duplexgroup` file
+#' 
+#' @param path. string. path to `.duplexgroup` file
+#' 
+#' @examples 
+#' read_duplexgroup(system.file('extdata', 'Neat1_1.duplexgroup', package = 'paristools'))
+#' 
 #' 
 #' @section implementation:
 #' `read_duplexgroup()` runs quite fast, since we fully utilize R's
@@ -73,9 +95,10 @@ read_duplexgroup <- function(path) {
     id <- genome_line %>% str_extract('\\d+') 
     score <- genome_line %>% str_extract('(?<=score )[\\d\\.]+(?=\\.)') %>% as.double()
     tag_df <- tibble::tibble(id = id, score = score);
-    
+        # rep(times = 2): left + right, rep(times = support): each group has multiple reads
     genome_tag_idx <- seq_along(id) %>% rep(times = 2)
     reads_tag_idx <- seq_along(id) %>% rep(times = support) %>% rep(times = 2)
+
     dplyr::bind_rows(
         dplyr::bind_cols(genome_df, tag_df[genome_tag_idx, ]),
         dplyr::bind_cols(reads_df, tag_df[reads_tag_idx, ])

@@ -6,15 +6,27 @@
 \usage{
 read_duplexgroup(path)
 }
+\arguments{
+\item{path.}{string. path to \code{.duplexgroup} file}
+}
 \description{
 read \code{.duplexgroup} file
 }
 \section{implementation}{
 
-\code{read_duplexgroup()} runs quite fast, since we fully utilize R's vectorisation feature, at the price of \emph{obscured} code.
+\code{read_duplexgroup()} runs quite fast, since we fully utilize R's
+vectorisation feature, at the price of \emph{obscured} code.
 
-\code{\link[=read_duplexgroup_old]{read_duplexgroup_old()}} is much clearer, it parses each group separately. reading its source can help you understand the implementation.
+\code{\link[=read_duplexgroup_old]{read_duplexgroup_old()}} is much clearer, it parses each group separately.
+reading its source can help you understand the implementation.
 
-In short, the most difficult part is, how to label each row with correct identifier (group id here) after we concatenate each loc line and \code{\link[=parse_locs]{parse_locs()}} at once,
+In short, the most difficult part is, how to label each row with correct
+identifier (group id here) after we concatenate each loc line and
+\code{\link[=parse_locs]{parse_locs()}} at once,
 }
 
+\examples{
+read_duplexgroup(system.file('extdata', 'Neat1_1.duplexgroup', package = 'paristools'))
+
+
+}

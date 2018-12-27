@@ -2,10 +2,21 @@
 % Please edit documentation in R/read-dg.R
 \name{parse_locs}
 \alias{parse_locs}
-\title{parse genome location of left & right segment}
+\title{parse genome location of left & right segments}
 \usage{
 parse_locs(locs, sep)
 }
+\arguments{
+\item{locs}{character}
+
+\item{sep}{string. separate left & right segments, passed on to \code{\link[stringr:fixed]{stringr::fixed()}}}
+}
 \description{
-parse genome location of left & right segment
+parse genome location of left & right segments
+}
+\examples{
+parse_locs('neat1(+):1-15|neat1(-):40-50', '|')
+
+parse_locs(c('neat1|+:1-15<=>neat1|-:298-316', 'neat1|+:1-16<=>neat1|+:303-317'), '<=>')
+
 }
