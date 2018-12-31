@@ -15,4 +15,4 @@ testthat::test_that('read_sam()', {
         c("character", "integer", "character", "integer", "integer", "character", 
           "character", "integer", "integer", "character", "character")
     )
-});
+})

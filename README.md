@@ -20,24 +20,35 @@ remotes::install_github('dongzhuoer/paristools');
 
 refer to `vignette('paristools')`.
 
+## Rcpp issue
+
+1. this package can't be depended by standalone file
+
+```
+// [[Rcpp::depends(paristools)]]
+#include <paristools.h>
+```
+
+cause
+
+```
+In file included from /home/zhuoer/.local/lib/R/paristools/include/paristools.h:7:
+/home/zhuoer/.local/lib/R/paristools/include/paristools.hpp:4:10: fatal error: 'Rcppzhuoer.h' file not found
+#include <Rcppzhuoer.h>
+         ^~~~~~~~~~~~~~
+```
+
+2. pure C++ function can't be exported
+
+`List as_locs(const std::list<loc>& loc_list);`
+
 ## develop
 
 1. Refer to this [post](https://dongzhuoer.github.io/_redirects/develop-upon-my-r-package.html)
 
 
 ```r
-microbenchmark::microbenchmark(
-    times = 10L,
-    read_duplexgroup = paristools::read_duplexgroup('inst/extdata/Neat1_1.duplexgroup'),
-    read_duplexgroup2 = paristools::read_duplexgroup2('inst/extdata/Neat1_1.duplexgroup')
-)
-bench::system_time(
-    paristools::read_duplexgroup('inst/extdata/Neat1_1.duplexgroup')
-)
 
-bench::mark(
-    paristools::read_duplexgroup2('inst/extdata/Neat1_1.duplexgroup')
-)
 
 ```
 

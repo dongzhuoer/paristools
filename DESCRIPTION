@@ -18,7 +18,9 @@ Imports:
     stringr,
     tibble,
     readr,
-    Rcpp
+    Rcpp,
+    Rcppzhuoer
 VignetteBuilder: knitr, rmarkdown
 LinkingTo: 
-    Rcpp
+    Rcpp,
+    Rcppzhuoer

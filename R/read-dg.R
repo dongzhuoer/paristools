@@ -72,7 +72,7 @@ parse_locs <- function(locs, sep) {
 #' 
 #' @export
  
-# path <- 'inst/extdata/Neat1_1.duplexgroup'
+# file <- 'inst/extdata/Neat1_1.duplexgroup'
 read_duplexgroup <- function(file) {
     group <- file %>% readr::read_file() %>% stringr::str_remove_all('\n$') %>% 
         str_split('\n(?=Group )') %>% .[[1]]     # each element is a duplexgroup
@@ -130,7 +130,7 @@ read_duplexgroup_old <- function(file) {
         )
     }
     
-    path %>% readr::read_file() %>% 
+    file %>% readr::read_file() %>% 
         stringr::str_split('\n(?=Group )') %>% unlist() %>% 
         parallel::mclapply(parse_group) %>% dplyr::bind_rows() %>%
         dplyr::mutate_at('score', as.numeric)

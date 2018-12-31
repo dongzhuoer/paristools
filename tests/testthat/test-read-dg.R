@@ -13,7 +13,7 @@ testthat::test_that('parse_loc()', {
         parse_loc(c('neat1|+:40-69', 'neat1|+:27-50')),
         tibble::tibble(chr = "neat1", strand = "+", start = c(40L, 27L), end = c(69L, 50L))
     )
-});
+})
 
 
 # parse_locs ------------------
@@ -31,7 +31,7 @@ testthat::test_that('parse_locs()', {
             chr = "neat1", strand = c("+", "+", "-", "+"), start = c(1L, 1L, 298L, 303L),
             end = c(15L, 16L, 316L, 317L), pair = c("left", "left", "right", "right"))
     )
-});
+})
 
 
 
@@ -60,7 +60,7 @@ testthat::test_that('read_duplexgroup() demo', {
             read_duplexgroup(),
         'number of chimeric reads mismatch group support value'
     )
-});
+})
 
 testthat::test_that('read_duplexgroup() real file', {
     duplexgroup <- read_duplexgroup('inst/extdata/Neat1_1.duplexgroup')
