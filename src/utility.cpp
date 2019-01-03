@@ -2,7 +2,7 @@
 // [[Rcpp::interfaces(r, cpp)]]
 
 #include <Rcpp.h>
-#include "../inst/include/paristools.hpp"
+#include "common.hpp"
 
 using namespace Rcpp;
 using paristools::loc;
@@ -42,6 +42,7 @@ List as_locs(const std::list<loc>& loc_list) {
     locs.attr("names") = CharacterVector::create("chrom", "strand", "start", "end");
     return Rcppzhuoer::as_tibble(locs);
 }
+
 // [[Rcpp::export]]
 List test_as_locs() {
     std::list<loc> loc_list {{"neat1", "+", 1, 100}, {"neat1", "-", 17, 49}};

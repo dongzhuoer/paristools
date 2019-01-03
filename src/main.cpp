@@ -2,7 +2,7 @@
 // [[Rcpp::interfaces(r, cpp)]]
 
 #include <Rcpp.h>
-#include "../inst/include/paristools.hpp"
+#include "common.hpp"
 #include "utility.hpp"
 
 using namespace Rcpp;
