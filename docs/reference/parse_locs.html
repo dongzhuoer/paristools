@@ -133,19 +133,9 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>parse_locs</span>(<span class='st'>'neat1(+):1-15|neat1(-):40-50'</span>, <span class='st'>'|'</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2 x 5</span><span>
-#&gt;   chr   strand start   end pair 
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> neat1 +          1    15 left 
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> neat1 -         40    50 right</div><div class='input'>
-<span class='fu'>parse_locs</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'neat1|+:1-15&lt;=&gt;neat1|-:298-316'</span>, <span class='st'>'neat1|+:1-16&lt;=&gt;neat1|+:303-317'</span>), <span class='st'>'&lt;=&gt;'</span>)</div><div class='output co'>#&gt; </span><span style='color: #949494;'># A tibble: 4 x 5</span><span>
-#&gt;   chr   strand start   end pair 
-#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'>1</span><span> neat1 +          1    15 left 
-#&gt; </span><span style='color: #BCBCBC;'>2</span><span> neat1 +          1    16 left 
-#&gt; </span><span style='color: #BCBCBC;'>3</span><span> neat1 -        298   316 right
-#&gt; </span><span style='color: #BCBCBC;'>4</span><span> neat1 +        303   317 right</div><div class='input'>
-</div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>parse_locs</span>(<span class='st'>'neat1(+):1-15|neat1(-):40-50'</span>, <span class='st'>'|'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in parse_locs("neat1(+):1-15|neat1(-):40-50", "|"): could not find function "parse_locs"</span></div><div class='input'>
+<span class='fu'>parse_locs</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'neat1|+:1-15&lt;=&gt;neat1|-:298-316'</span>, <span class='st'>'neat1|+:1-16&lt;=&gt;neat1|+:303-317'</span>), <span class='st'>'&lt;=&gt;'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in parse_locs(c("neat1|+:1-15&lt;=&gt;neat1|-:298-316", "neat1|+:1-16&lt;=&gt;neat1|+:303-317"),     "&lt;=&gt;"): could not find function "parse_locs"</span></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

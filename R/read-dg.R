@@ -13,9 +13,10 @@ NULL
 #' 
 #' @examples 
 #' parse_loc('neat1(+):1-15')
+#' 
 #' parse_loc(c('neat1|+:40-69', 'neat1|+:27-50'))
 #' 
-#' @export
+#' @keywords internal
 
 # loc = c('neat1|+:40-69', 'neat1|+:27-50')
 parse_loc <- function(loc) {
@@ -37,7 +38,7 @@ parse_loc <- function(loc) {
 #' 
 #' parse_locs(c('neat1|+:1-15<=>neat1|-:298-316', 'neat1|+:1-16<=>neat1|+:303-317'), '<=>')
 #' 
-#' @export
+#' @keywords internal
 
 # locs = c('neat1|+:1-15<=>neat1|-:298-316', 'neat1|+:1-16<=>neat1|+:303-317')
 # sep = '<=>'

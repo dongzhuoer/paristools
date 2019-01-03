@@ -8,7 +8,20 @@ template:
     params:
         bootswatch: cerulean
 
+reference:
+  - title: "Reading various files"
+    desc: >
+      read `.sam`, `.bed`, `.duplexgroup` file
+    contents: 
+      - starts_with("read_")
 
+  - title: "Genome coverage of reads"
+    contents:
+      - sam_to_loc_df
+      - cal_coverage
+
+  - title: "Utility functions"
+    contents:
 
 
 

@@ -7,13 +7,14 @@ NULL
 #' 
 #' @inheritParams read_duplexgroup
 #' 
-#' @description 
-#' We only preserve 11 mandatory fields
-#' 
 #' @return a tibble of 11 variables
 #' 
+#' @description 
+#' Read `.sam` file, only preserve 11 mandatory fields
+#' 
 #' @examples 
-#' read_sam(system.file('extdata', 'Neat1_1.Aligend_trunc.sam', package = 'paristools'))
+#' sam_file <- system.file('extdata', 'Neat1_1.Aligend_trunc.sam', package = 'paristools')
+#' read_sam(sam_file)
 #' 
 #' @details 
 #' Since `.sam` file can cantain arbitrary columns after the required 11, and it doesn't contain a header line, I find it hard to use [readr::read_tsv()]. Finally, I use [stringr::str_split_fixed()] to split the file into 12 columns, the last one which stored extra fields is discarded.
@@ -51,6 +52,5 @@ read_bed <- function(file, ...) {
         c('chrom', 'start', 'end', 'name', 'score', 'strand'), 'ciicic', ...
     )
 }
-
 
 

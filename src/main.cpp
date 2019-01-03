@@ -51,15 +51,28 @@ std::list<loc> parse_CIGAR(String chrom, unsigned flag, unsigned long pos, Strin
 // [[Rcpp::export]]
 List test_parse_CIGAR (String chrom, unsigned flag, unsigned long pos, String CIGAR, unsigned long SEQ_len) {
     std::list<loc> loc_list = parse_CIGAR(chrom, flag, pos, CIGAR, SEQ_len);
-    return as_locs(loc_list);
+    return as_loc_df(loc_list);
 }
 /*** R
 test_parse_CIGAR('neat1', 16, 123, '8M1S', 9)
 */
 
 
+//' @title find all mapped region in a `.sam` data.frame
+//' @name sam_to_loc_df
+//' 
+//' @param sam data.frame. see [read_sam()]
+//' 
+//' @return a tibble of 4 variables, `chrom`, `strand`, `start`, `end`
+//' 
+//' @examples
+//' sam_file <- system.file('extdata', 'Neat1_1.Aligend_trunc.sam', package = 'paristools')
+//' sam_file %>% read_sam() %>% sam_to_loc_df()
+//' 
+//' @export
+
 // [[Rcpp::export]]
-List sam_to_locs(DataFrame sam) {
+List sam_to_loc_df(DataFrame sam) {
     // const DataFrame & doesn't help, we have to carefully make sure not to modify `df`
     CharacterVector chrom = sam["RNAME"];
     IntegerVector   flag  = sam["FLAG"];
@@ -76,35 +89,19 @@ List sam_to_locs(DataFrame sam) {
             parse_CIGAR(chrom[i], flag[i], pos[i], CIGAR[i], strlen(seq.get_cstring()))
         );
     }
-    return as_locs(loc_list);
+    return as_loc_df(loc_list);
 }
 /*** R
 sam <- system.file('extdata', 'Neat1_1.Aligend_trunc.sam', package = 'paristools') %>% paristools::read_sam();
 
-sam_to_locs(head(sam))
-*/
+sam_to_loc_df(head(sam))
+sam %>% sam_to_loc_df()
+library(tidyverse)
 
+# 1. remove 2+ N
+# 2. N < 3 ?
+# 3. S < 0.2 len
+sam %>% filter(str_detect(CIGAR, '0N')) 
 
-
-
-
-// [[Rcpp::export]]
-List test2(const DataFrame & df) {
-    IntegerVector a = df[0];
-    a[0] = 10;
-
-    return List::create(a);
-
-    return List();
-    
-}
-
-
-
-/*** R
-# test2(data.frame(a = 1:10))
-*/
-
-
-/*** R
+sam %>% mutate(x = nchar(SEQ)) %>% ggplot() + geom_bar(aes(x))
 */

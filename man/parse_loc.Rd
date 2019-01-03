@@ -17,6 +17,8 @@ we assume chr only contains alpha-numeric characters
 }
 \examples{
 parse_loc('neat1(+):1-15')
+
 parse_loc(c('neat1|+:40-69', 'neat1|+:27-50'))
 
 }
+\keyword{internal}

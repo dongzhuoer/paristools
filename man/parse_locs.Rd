@@ -20,3 +20,4 @@ parse_locs('neat1(+):1-15|neat1(-):40-50', '|')
 parse_locs(c('neat1|+:1-15<=>neat1|-:298-316', 'neat1|+:1-16<=>neat1|+:303-317'), '<=>')
 
 }
+\keyword{internal}

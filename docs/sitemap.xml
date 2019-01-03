@@ -4,6 +4,12 @@
     <loc>https://dongzhuoer.github.io/paristools/index.html</loc>
   </url>
   <url>
+    <loc>https://dongzhuoer.github.io/paristools/reference/cal_coverage.html</loc>
+  </url>
+  <url>
+    <loc>https://dongzhuoer.github.io/paristools/reference/cal_coverage_impl.html</loc>
+  </url>
+  <url>
     <loc>https://dongzhuoer.github.io/paristools/reference/parse_loc.html</loc>
   </url>
   <url>
@@ -26,6 +32,9 @@
   </url>
   <url>
     <loc>https://dongzhuoer.github.io/paristools/reference/reexports.html</loc>
+  </url>
+  <url>
+    <loc>https://dongzhuoer.github.io/paristools/reference/sam_to_loc_df.html</loc>
   </url>
   <url>
     <loc>https://dongzhuoer.github.io/paristools/articles/paristools.html</loc>

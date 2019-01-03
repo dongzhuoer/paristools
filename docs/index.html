@@ -90,6 +90,14 @@
 <a href="#usage" class="anchor"></a>Usage</h2>
 <p>refer to <code><a href="articles/paristools.html">vignette('paristools')</a></code>.</p>
 </div>
+<div id="to-do" class="section level2">
+<h2 class="hasAnchor">
+<a href="#to-do" class="anchor"></a>to do:</h2>
+<ol>
+<li>test-cpp-export locs_to_coverage_impl()</li>
+<li>test-cpp-export sam_to_locs()</li>
+</ol>
+</div>
 <div id="rcpp-issue" class="section level2">
 <h2 class="hasAnchor">
 <a href="#rcpp-issue" class="anchor"></a>Rcpp issue</h2>
@@ -107,6 +115,12 @@
 <li>pure C++ function can’t be exported</li>
 </ol>
 <p><code>List as_locs(const std::list&lt;loc&gt;&amp; loc_list);</code></p>
+<ol>
+<li><p>in fact, the above two is quite related. We want to export <code>paristools.hpp</code> for defination of custom struct, <code>loc</code>. But if we don’t export functions like <code>as_locs()</code> at all, then we won’t need to export anything in header file. (That’s only true for this package, exporting a header file which depends on another package is still impossible, and may be needed.)</p></li>
+<li><p>find why you can’t testthat cpp export</p></li>
+</ol>
+<p>Thanks for <code>verbose = T</code>, I find the code doesn’t include <code>#include &lt;paristools.h&gt;</code> ^[later I find Rcpp can’t find the file, so it doesn’t include]. After set <code>includes</code> parameter, still fail. Thanks for <code>cacheDir = 'tests/testthat'</code>, I can get the temp <code>.cpp</code> file, and directly run <code>clang++</code> command. Finally, I found the cause.</p>
+<p>Rcpp use <code><a href="https://www.rdocumentation.org/packages/base/topics/find.package">find.package()</a></code> to determine package path, when you use testthat <code><a href="https://www.rdocumentation.org/packages/base/topics/find.package">find.package('pkg')</a></code> return the project dir (in normal session, it return package in the library, <code>.local/lib/R/pkg</code>). The reason is that <code><a href="https://www.rdocumentation.org/packages/base/topics/find.package">find.package()</a></code> looks for loaded namesace first, and testthat load pkg namespace from the the project dir. Finally, I use <code><a href="https://www.rdocumentation.org/packages/callr/topics/r">callr::r()</a></code> to avoid the problem.</p>
 </div>
 <div id="develop" class="section level2">
 <h2 class="hasAnchor">

@@ -13,12 +13,13 @@ read_sam(file)
 a tibble of 11 variables
 }
 \description{
-We only preserve 11 mandatory fields
+Read \code{.sam} file, only preserve 11 mandatory fields
 }
 \details{
 Since \code{.sam} file can cantain arbitrary columns after the required 11, and it doesn't contain a header line, I find it hard to use \code{\link[readr:read_tsv]{readr::read_tsv()}}. Finally, I use \code{\link[stringr:str_split_fixed]{stringr::str_split_fixed()}} to split the file into 12 columns, the last one which stored extra fields is discarded.
 }
 \examples{
-read_sam(system.file('extdata', 'Neat1_1.Aligend_trunc.sam', package = 'paristools'))
+sam_file <- system.file('extdata', 'Neat1_1.Aligend_trunc.sam', package = 'paristools')
+read_sam(sam_file)
 
 }

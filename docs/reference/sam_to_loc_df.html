@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>parse genome location specification in <code>.duplexgroup</code> file — parse_loc • paristools</title>
+<title>find all mapped region in a <code>.sam</code> data.frame — sam_to_loc_df • paristools</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="parse genome location specification in <code>.duplexgroup</code> file — parse_loc" />
+<meta property="og:title" content="find all mapped region in a <code>.sam</code> data.frame — sam_to_loc_df" />
 
-<meta property="og:description" content="parse genome location specification in .duplexgroup file" />
+<meta property="og:description" content="find all mapped region in a .sam data.frame" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -105,44 +105,56 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>parse genome location specification in <code>.duplexgroup</code> file</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dongzhuoer/paristools/blob/master/R/read-dg.R'><code>R/read-dg.R</code></a></small>
-    <div class="hidden name"><code>parse_loc.Rd</code></div>
+    <h1>find all mapped region in a <code>.sam</code> data.frame</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dongzhuoer/paristools/blob/master/R/RcppExports.R'><code>R/RcppExports.R</code></a></small>
+    <div class="hidden name"><code>sam_to_loc_df.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>parse genome location specification in <code>.duplexgroup</code> file</p>
+    <p>find all mapped region in a <code>.sam</code> data.frame</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>parse_loc</span>(<span class='no'>loc</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>loc</th>
-      <td><p>character</p></td>
+      <th>sam</th>
+      <td><p>data.frame. see <code><a href='read_sam.html'>read_sam()</a></code></p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>we assume chr only contains alpha-numeric characters</p>
+    <p>a tibble of 4 variables, <code>chrom</code>, <code>strand</code>, <code>start</code>, <code>end</code></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>parse_loc</span>(<span class='st'>'neat1(+):1-15'</span>)</div><div class='output co'>#&gt; <span class='error'>Error in parse_loc("neat1(+):1-15"): could not find function "parse_loc"</span></div><div class='input'>
-<span class='fu'>parse_loc</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>'neat1|+:40-69'</span>, <span class='st'>'neat1|+:27-50'</span>))</div><div class='output co'>#&gt; <span class='error'>Error in parse_loc(c("neat1|+:40-69", "neat1|+:27-50")): could not find function "parse_loc"</span></div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>sam_file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>'extdata'</span>, <span class='st'>'Neat1_1.Aligend_trunc.sam'</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'paristools'</span>)
+<span class='no'>sam_file</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='read_sam.html'>read_sam</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'>sam_to_loc_df</span>()</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 5,859 x 4</span><span>
+#&gt;    chrom strand start   end
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> neat1 +        170   200
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> neat1 +        774   807
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> neat1 +        294   325
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> neat1 +        311   343
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> neat1 +       </span><span style='text-decoration: underline;'>1</span><span>032  </span><span style='text-decoration: underline;'>1</span><span>063
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> neat1 +       </span><span style='text-decoration: underline;'>3</span><span>158  </span><span style='text-decoration: underline;'>3</span><span>177
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> neat1 +       </span><span style='text-decoration: underline;'>2</span><span>326  </span><span style='text-decoration: underline;'>2</span><span>356
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> neat1 -       </span><span style='text-decoration: underline;'>2</span><span>493  </span><span style='text-decoration: underline;'>2</span><span>529
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> neat1 +        658   685
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> neat1 -        658   683
+#&gt; </span><span style='color: #949494;'># ... with 5,849 more rows</span><span></div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#details">Details</a></li>
+      <li><a href="#value">Value</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

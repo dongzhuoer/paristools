@@ -45,38 +45,17 @@ namespace paristools {
         return Rcpp::as<List >(rcpp_result_gen);
     }
 
-    inline List sam_to_locs(DataFrame sam) {
-        typedef SEXP(*Ptr_sam_to_locs)(SEXP);
-        static Ptr_sam_to_locs p_sam_to_locs = NULL;
-        if (p_sam_to_locs == NULL) {
-            validateSignature("List(*sam_to_locs)(DataFrame)");
-            p_sam_to_locs = (Ptr_sam_to_locs)R_GetCCallable("paristools", "_paristools_sam_to_locs");
+    inline List sam_to_loc_df(DataFrame sam) {
+        typedef SEXP(*Ptr_sam_to_loc_df)(SEXP);
+        static Ptr_sam_to_loc_df p_sam_to_loc_df = NULL;
+        if (p_sam_to_loc_df == NULL) {
+            validateSignature("List(*sam_to_loc_df)(DataFrame)");
+            p_sam_to_loc_df = (Ptr_sam_to_loc_df)R_GetCCallable("paristools", "_paristools_sam_to_loc_df");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_sam_to_locs(Shield<SEXP>(Rcpp::wrap(sam)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<List >(rcpp_result_gen);
-    }
-
-    inline List test2(const DataFrame& df) {
-        typedef SEXP(*Ptr_test2)(SEXP);
-        static Ptr_test2 p_test2 = NULL;
-        if (p_test2 == NULL) {
-            validateSignature("List(*test2)(const DataFrame&)");
-            p_test2 = (Ptr_test2)R_GetCCallable("paristools", "_paristools_test2");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_test2(Shield<SEXP>(Rcpp::wrap(df)));
+            rcpp_result_gen = p_sam_to_loc_df(Shield<SEXP>(Rcpp::wrap(sam)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
@@ -108,17 +87,59 @@ namespace paristools {
         return Rcpp::as<std::string >(rcpp_result_gen);
     }
 
-    inline List test_as_locs() {
-        typedef SEXP(*Ptr_test_as_locs)();
-        static Ptr_test_as_locs p_test_as_locs = NULL;
-        if (p_test_as_locs == NULL) {
-            validateSignature("List(*test_as_locs)()");
-            p_test_as_locs = (Ptr_test_as_locs)R_GetCCallable("paristools", "_paristools_test_as_locs");
+    inline List test_as_loc_df() {
+        typedef SEXP(*Ptr_test_as_loc_df)();
+        static Ptr_test_as_loc_df p_test_as_loc_df = NULL;
+        if (p_test_as_loc_df == NULL) {
+            validateSignature("List(*test_as_loc_df)()");
+            p_test_as_loc_df = (Ptr_test_as_loc_df)R_GetCCallable("paristools", "_paristools_test_as_loc_df");
         }
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_test_as_locs();
+            rcpp_result_gen = p_test_as_loc_df();
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<List >(rcpp_result_gen);
+    }
+
+    inline List cal_coverage_impl(DataFrame loc_df) {
+        typedef SEXP(*Ptr_cal_coverage_impl)(SEXP);
+        static Ptr_cal_coverage_impl p_cal_coverage_impl = NULL;
+        if (p_cal_coverage_impl == NULL) {
+            validateSignature("List(*cal_coverage_impl)(DataFrame)");
+            p_cal_coverage_impl = (Ptr_cal_coverage_impl)R_GetCCallable("paristools", "_paristools_cal_coverage_impl");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_cal_coverage_impl(Shield<SEXP>(Rcpp::wrap(loc_df)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<List >(rcpp_result_gen);
+    }
+
+    inline List test2(const DataFrame& df) {
+        typedef SEXP(*Ptr_test2)(SEXP);
+        static Ptr_test2 p_test2 = NULL;
+        if (p_test2 == NULL) {
+            validateSignature("List(*test2)(const DataFrame&)");
+            p_test2 = (Ptr_test2)R_GetCCallable("paristools", "_paristools_test2");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_test2(Shield<SEXP>(Rcpp::wrap(df)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();

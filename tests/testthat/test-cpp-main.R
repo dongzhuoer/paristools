@@ -1,7 +1,7 @@
 testthat::context('Testing main.cpp')
 if (basename(getwd()) == 'testthat') setwd('../..')  # workspace is reset per file
 
-testthat::test_that('get_strand()', {
+testthat::test_that('parse_CIGAR()', {
     testthat::expect_true(T);
     
     test_parse_CIGAR('neat1', 0, 2691, '8S20M3S', 8+20+3);
