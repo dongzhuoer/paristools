@@ -24,3 +24,5 @@ VignetteBuilder: knitr, rmarkdown
 LinkingTo: 
     Rcpp,
     Rcppzhuoer
+Remotes:
+    dongzhuoer/Rcppzhuoer
