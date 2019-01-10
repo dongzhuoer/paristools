@@ -18,3 +18,8 @@ calculate genome coverage
 \details{
 we use 1-based coordinate, \link{start, end}
 }
+\examples{
+sam_file <- system.file('extdata', 'Neat1_1.Aligend_trunc.sam', package = 'paristools')
+sam_file \%>\% read_sam() \%>\% sam_to_loc_df() \%>\% cal_coverage()
+
+}

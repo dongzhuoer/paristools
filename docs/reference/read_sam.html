@@ -133,7 +133,7 @@
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Since <code>.sam</code> file can cantain arbitrary columns after the required 11, and it doesn't contain a header line, I find it hard to use <code><a href='https://readr.tidyverse.org/reference/read_delim.html'>readr::read_tsv()</a></code>. Finally, I use <code><a href='https://www.rdocumentation.org/packages/stringr/topics/str_split'>stringr::str_split_fixed()</a></code> to split the file into 12 columns, the last one which stored extra fields is discarded.</p>
+    <p>Since <code>.sam</code> file can cantain arbitrary columns after the required 11, and it doesn't contain a header line, I find it hard to use <code><a href='https://readr.tidyverse.org/reference/read_delim.html'>readr::read_tsv()</a></code>. Finally, I use <code><a href='https://stringr.tidyverse.org/reference/str_split.html'>stringr::str_split_fixed()</a></code> to split the file into 12 columns, the last one which stored extra fields is discarded.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -151,7 +151,7 @@
 #&gt; </span><span style='color: #BCBCBC;'> 8</span><span> ST-E0031…     0 neat1   184   255 1S29M  *         0     0 ATCCAAAG… JJJJJJJ…
 #&gt; </span><span style='color: #BCBCBC;'> 9</span><span> ST-E0031…     0 neat1   227     3 26M70… *         0     0 AGACCAGG… JFJJJJ7…
 #&gt; </span><span style='color: #BCBCBC;'>10</span><span> ST-E0031…   256 neat1   227     3 27M6S  *         0     0 AGACCAGG… JFJJJJ7…
-#&gt; </span><span style='color: #949494;'># ... with 4,986 more rows</span><span></div><div class='input'>
+#&gt; </span><span style='color: #949494;'># … with 4,986 more rows</span><span></div><div class='input'>
 </div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -19,4 +19,5 @@ read \code{.sam} file
 }
 \examples{
 NULL
+
 }

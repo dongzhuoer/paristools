@@ -21,7 +21,7 @@ NULL
 # loc = c('neat1|+:40-69', 'neat1|+:27-50')
 parse_loc <- function(loc) {
     tibble::tibble(
-        chr    = str_extract(loc, '\\w+'),
+        chrom    = str_extract(loc, '\\w+'),
         strand = str_extract(loc, '[+-]'),
         start  = str_extract(loc, '(?<=:)\\d+') %>% as.integer(),
         end    = str_extract(loc, '\\d+$') %>% as.integer()
@@ -57,7 +57,8 @@ parse_locs <- function(locs, sep) {
 #' @return a tibble of 8 variables
 #' 
 #' @examples 
-#' read_duplexgroup(system.file('extdata', 'Neat1_1.duplexgroup', package = 'paristools'))
+#' duplexgroup_file <- system.file('extdata', 'Neat1_1.duplexgroup', package = 'paristools');
+#' read_duplexgroup(duplexgroup_file)
 #' 
 #' 
 #' @section implementation:

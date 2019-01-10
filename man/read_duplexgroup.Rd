@@ -29,7 +29,8 @@ identifier (group id here) after we concatenate each loc line and
 }
 
 \examples{
-read_duplexgroup(system.file('extdata', 'Neat1_1.duplexgroup', package = 'paristools'))
+duplexgroup_file <- system.file('extdata', 'Neat1_1.duplexgroup', package = 'paristools');
+read_duplexgroup(duplexgroup_file)
 
 
 }

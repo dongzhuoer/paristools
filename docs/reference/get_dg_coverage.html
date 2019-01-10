@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>read <code>.duplexgroup</code> file — read_duplexgroup • paristools</title>
+<title>calculate average coverage of duplex segment — get_dg_coverage • paristools</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="read <code>.duplexgroup</code> file — read_duplexgroup" />
+<meta property="og:title" content="calculate average coverage of duplex segment — get_dg_coverage" />
 
-<meta property="og:description" content="read .duplexgroup file" />
+<meta property="og:description" content="calculate average coverage of duplex segment" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -105,62 +105,44 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>read <code>.duplexgroup</code> file</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dongzhuoer/paristools/blob/master/R/read-dg.R'><code>R/read-dg.R</code></a></small>
-    <div class="hidden name"><code>read_duplexgroup.Rd</code></div>
+    <h1>calculate average coverage of duplex segment</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dongzhuoer/paristools/blob/master/R/main.R'><code>R/main.R</code></a></small>
+    <div class="hidden name"><code>get_dg_coverage.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>read <code>.duplexgroup</code> file</p>
+    <p>calculate average coverage of duplex segment</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>read_duplexgroup</span>(<span class='no'>file</span>)</pre>
+    <pre class="usage"><span class='fu'>get_dg_coverage</span>(<span class='no'>duplex_group</span>, <span class='no'>genome_coverage</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>file</th>
-      <td><p>string. path to input file, passed onto <code><a href='https://readr.tidyverse.org/reference/read_file.html'>readr::read_file()</a></code></p></td>
+      <th>duplex_group</th>
+      <td><p>tibble. see <code><a href='read_duplexgroup.html'>read_duplexgroup()</a></code></p></td>
+    </tr>
+    <tr>
+      <th>genome_coverage</th>
+      <td><p>tibble. see <code><a href='cal_coverage.html'>cal_coverage()</a></code></p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a tibble of 8 variables</p>
-    
-    <h2 class="hasAnchor" id="implementation"><a class="anchor" href="#implementation"></a>implementation</h2>
-
-    
-    <p><code>read_duplexgroup()</code> runs quite fast, since we fully utilize R's
-vectorisation feature, at the price of <em>obscured</em> code.</p>
-<p><code><a href='read_duplexgroup_old.html'>read_duplexgroup_old()</a></code> is much clearer, it parses each group separately.
-reading its source can help you understand the implementation.</p>
-<p>In short, the most difficult part is, how to label each row with correct
-identifier (group id here) after we concatenate each loc line and
-<code><a href='parse_locs.html'>parse_locs()</a></code> at once,</p>
+    <p>tibble.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>duplexgroup_file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>'extdata'</span>, <span class='st'>'Neat1_1.duplexgroup'</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'paristools'</span>);
-<span class='fu'>read_duplexgroup</span>(<span class='no'>duplexgroup_file</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 15,964 x 8</span><span>
-#&gt;    chrom strand start   end pair  type   id    score
-#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> neat1 +          1    15 left  genome 0     0.01 
-#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> neat1 +         40    50 right genome 0     0.01 
-#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> neat1 +          1    15 left  read   0     0.01 
-#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> neat1 +          1    19 left  read   0     0.01 
-#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> neat1 +         40    69 right read   0     0.01 
-#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> neat1 +         27    50 right read   0     0.01 
-#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> neat1 +          1    15 left  genome 1     0.012
-#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> neat1 +        303   316 right genome 1     0.012
-#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> neat1 +          1    15 left  read   1     0.012
-#&gt; </span><span style='color: #BCBCBC;'>10</span><span> neat1 +          1    16 left  read   1     0.012
-#&gt; </span><span style='color: #949494;'># … with 15,954 more rows</span><span></div><div class='input'>
-
-</div></span></pre>
+    <pre class="examples"><div class='input'><span class='no'>sam_file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>'extdata'</span>, <span class='st'>'Neat1_1.Aligend_trunc.sam'</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'paristools'</span>)
+<span class='no'>duplexgroup_file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>'extdata'</span>, <span class='st'>'Neat1_1.duplexgroup'</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'paristools'</span>);
+<span class='fu'>get_dg_coverage</span>(
+    <span class='no'>sam_file</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='read_sam.html'>read_sam</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='sam_to_loc_df.html'>sam_to_loc_df</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='cal_coverage.html'>cal_coverage</a></span>(),
+    <span class='fu'><a href='read_duplexgroup.html'>read_duplexgroup</a></span>(<span class='no'>duplexgroup_file</span>)
+)</div><div class='output co'>#&gt; <span class='error'>Error in ~pair == "left": object 'pair' not found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -168,8 +150,6 @@ identifier (group id here) after we concatenate each loc line and
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#implementation">implementation</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

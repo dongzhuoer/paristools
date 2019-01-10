@@ -136,6 +136,23 @@
     <p>we use 1-based coordinate, start, end</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='no'>sam_file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>'extdata'</span>, <span class='st'>'Neat1_1.Aligend_trunc.sam'</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'paristools'</span>)
+<span class='no'>sam_file</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='read_sam.html'>read_sam</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='sam_to_loc_df.html'>sam_to_loc_df</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'>cal_coverage</span>()</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 6,354 x 4</span><span>
+#&gt;    chrom strand   pos n_reads
+#&gt;  </span><span style='color: #BCBCBC;'>*</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> neat1 +          1      14
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> neat1 +          2      15
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> neat1 +          3      15
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> neat1 +          4      15
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> neat1 +          5      16
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> neat1 +          6      17
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> neat1 +          7      17
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> neat1 +          8      20
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> neat1 +          9      23
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> neat1 +         10      24
+#&gt; </span><span style='color: #949494;'># … with 6,344 more rows</span><span></div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -145,7 +162,9 @@
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
-          </ul>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

@@ -6,12 +6,12 @@ if (basename(getwd()) == 'testthat') setwd('../..')  # workspace is reset per fi
 testthat::test_that('parse_loc()', {
     testthat::expect_identical(
         parse_loc('neat1(+):1-15'),
-        tibble::tibble(chr = "neat1", strand = "+", start = 1L, end = 15L)
+        tibble::tibble(chrom = "neat1", strand = "+", start = 1L, end = 15L)
     )
     
     testthat::expect_identical(
         parse_loc(c('neat1|+:40-69', 'neat1|+:27-50')),
-        tibble::tibble(chr = "neat1", strand = "+", start = c(40L, 27L), end = c(69L, 50L))
+        tibble::tibble(chrom = "neat1", strand = "+", start = c(40L, 27L), end = c(69L, 50L))
     )
 })
 
@@ -21,14 +21,14 @@ testthat::test_that('parse_locs()', {
     testthat::expect_identical(
         parse_locs('neat1(+):1-15|neat1(-):40-50', '|'),
         tibble::tibble(
-            chr = c("neat1", "neat1"), strand = c("+", "-"), start = c(1L, 40L),
+            chrom = c("neat1", "neat1"), strand = c("+", "-"), start = c(1L, 40L),
             end = c(15L, 50L), pair = c("left", "right"))
     )
 
     testthat::expect_identical(
         parse_locs(c('neat1|+:1-15<=>neat1|-:298-316', 'neat1|+:1-16<=>neat1|+:303-317'), '<=>'),
         tibble::tibble(
-            chr = "neat1", strand = c("+", "+", "-", "+"), start = c(1L, 1L, 298L, 303L),
+            chrom = "neat1", strand = c("+", "+", "-", "+"), start = c(1L, 1L, 298L, 303L),
             end = c(15L, 16L, 316L, 317L), pair = c("left", "left", "right", "right"))
     )
 })
@@ -48,7 +48,7 @@ testthat::test_that('read_duplexgroup() demo', {
     testthat::expect_identical(
         read_duplexgroup(simple_raw_duplexgroup),
         tibble::tibble(
-            chr = "neat1", strand = "+", start = c(1L, 40L, 1L, 1L, 40L, 27L),
+            chrom = "neat1", strand = "+", start = c(1L, 40L, 1L, 1L, 40L, 27L),
             end = c(15L, 50L, 15L, 19L, 69L, 50L),
             pair = c("left", "right", "left", "left", "right", "right"),
             type = c("genome", "genome", "read", "read", "read", "read"), id = "0", score = 0.010
@@ -69,7 +69,7 @@ testthat::test_that('read_duplexgroup() real file', {
     testthat::expect_identical(dim(duplexgroup), c(15964L, 8L))
     testthat::expect_identical(
         colnames(duplexgroup), 
-        c("chr", "strand", "start", "end", "pair", "type", "id", "score")
+        c("chrom", "strand", "start", "end", "pair", "type", "id", "score")
     )
 });
 
@@ -93,7 +93,7 @@ testthat::test_that('read_duplexgroup_old()', {
             sep = '\n'
         ) %>% read_duplexgroup_old(),
         tibble::tibble(
-            chr = "neat1", strand = "+", start = c(1L, 40L, 1L, 1L, 40L, 27L),
+            chrom = "neat1", strand = "+", start = c(1L, 40L, 1L, 1L, 40L, 27L),
             end = c(15L, 50L, 15L, 19L, 69L, 50L),
             pair = c("left", "right", "left", "left", "right", "right"),
             type = c("genome", "genome", "read", "read", "read", "read"), id = "0", score = 0.010

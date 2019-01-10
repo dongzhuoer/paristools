@@ -2,6 +2,7 @@
 
 export("%>%")
 export(cal_coverage)
+export(get_dg_coverage)
 export(read_bed)
 export(read_duplexgroup)
 export(read_sam)

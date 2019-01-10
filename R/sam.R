@@ -44,6 +44,7 @@ read_sam <- function(file) {
 #' 
 #' @examples 
 #' NULL
+#' 
 #' @export
 
 read_bed <- function(file, ...) {
