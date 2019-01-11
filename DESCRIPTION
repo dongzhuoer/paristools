@@ -25,4 +25,5 @@ LinkingTo:
     Rcpp,
     Rcppzhuoer
 Remotes:
-    dongzhuoer/Rcppzhuoer
+    dongzhuoer/Rcppzhuoer,
+    tidyverse/dplyr
