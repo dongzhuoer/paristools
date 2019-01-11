@@ -14,10 +14,10 @@ using paristools::loc;
 std::string get_strand(const unsigned flag) {
     const unsigned strand_bit {16u};
     
-    if (flag ^ strand_bit) 
-        return "+";
+    if (flag & strand_bit) 
+        return "-";
     else 
-        return "-";    
+        return "+";    
 }
 
 

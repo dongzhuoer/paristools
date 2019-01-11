@@ -3,8 +3,8 @@ if (basename(getwd()) == 'testthat') setwd('../..')  # workspace is reset per fi
 
 testthat::test_that('get_strand()', {
     testthat::expect_identical(
-        purrr::map_chr(c(0L, 256L, 16L), get_strand),
-        c("+", "+", "-")
+        purrr::map_chr(c(0L, 16L, 256L, 272L), get_strand),
+        c("+", "-", "+", "-")
     )
 })
 
