@@ -20,12 +20,6 @@ remotes::install_github('dongzhuoer/paristools');
 
 refer to `vignette('paristools')`.
 
-## to do:
-
-1. test-cpp-export locs_to_coverage_impl()
-1. test-cpp-export sam_to_locs()
-
-
 
 
 ## develop
