@@ -1,4 +1,3 @@
-// [[Rcpp::plugins(cpp17)]]
 // [[Rcpp::interfaces(r, cpp)]]
 
 #include <Rcpp.h>

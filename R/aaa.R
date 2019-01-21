@@ -2,6 +2,6 @@
 #' @export
 magrittr::`%>%`
 
-#' @useDynLib paristools
+#' @useDynLib paristools, .registration = TRUE
 #' @importFrom Rcpp sourceCpp
 NULL
