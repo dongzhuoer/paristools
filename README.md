@@ -20,7 +20,9 @@ remotes::install_github('dongzhuoer/paristools');
 
 refer to `vignette('paristools')`.
 
+## extdata
 
+Refer to [xparis](https://github.com/dongzhuoer/xparis) for source of the data
 
 ## develop
 
