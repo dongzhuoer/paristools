@@ -38,6 +38,3 @@ testthat::test_that('read_bed()', {
     )
 })
 
-
-chr22 1000 5000 cloneA 960 +
-chr22 2000 6000 cloneB 900 -

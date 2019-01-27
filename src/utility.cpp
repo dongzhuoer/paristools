@@ -46,7 +46,6 @@ List as_loc_df(const std::list<loc>& loc_list) {
 // [[Rcpp::export]]
 List test_as_loc_df() {
     std::list<loc> loc_list {{"neat1", "+", 1, 100}, {"neat1", "-", 17, 49}};
-    Rcout << "ignore 2 copy loc above" << std::endl;
     
     return as_loc_df(loc_list);
 }

@@ -7,6 +7,7 @@ namespace paristools {
         std::string strand {};
         unsigned long start {};
         unsigned long end {};
-        Rcppzhuoer::foo<void> foo1 {}; // comment me in release
+        // comment following in release
+        // Rcppzhuoer::foo<void> foo1 {}; 
     };
 }
