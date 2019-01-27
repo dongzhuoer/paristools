@@ -28,21 +28,22 @@ cal_coverage <- function(loc_df) {
 }
 
 
-#' @title calculate average coverage of duplex segment
+#' @title calculate average coverage of duplex group segment
 #'
 #' @param duplex_group tibble. see [read_duplexgroup()]
 #' @param genome_coverage tibble. see [cal_coverage()]
 #'
 #' @return tibble. 
-#' @export
 #'
 #' @examples
 #' sam_file <- system.file('extdata', 'Neat1_1.Aligend_trunc.sam', package = 'paristools')
 #' duplexgroup_file <- system.file('extdata', 'Neat1_1.duplexgroup', package = 'paristools');
 #' get_dg_coverage(
-#'     sam_file %>% read_sam() %>% sam_to_loc_df() %>% cal_coverage(), 
-#'     read_duplexgroup(duplexgroup_file)
+#'     read_duplexgroup(duplexgroup_file),
+#'     sam_file %>% read_sam() %>% sam_to_loc_df() %>% cal_coverage()
 #' )
+#' 
+#' @export 
  
 # duplex_group <- 'inst/extdata/Neat1_1.duplexgroup' %>% read_duplexgroup()
 # genome_coverage <- 'inst/extdata/Neat1_1.Aligend_trunc.sam' %>% read_sam() %>% sam_to_loc_df() %>% cal_coverage()

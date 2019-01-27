@@ -13,10 +13,68 @@ vignette: >
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
+```{r message=FALSE}
+library(tidyverse)
+```
+
+
+
+# read files
+
 ```{r}
-library(paristools)
+sam_file <- system.file('extdata', 'Neat1_1.Aligend_trunc.sam', package = 'paristools')
+
+mapping <- paristools::read_sam(sam_file)
+mapping
 ```
 
 ```{r}
-plot(cars)
+duplexgroup_file <- system.file('extdata', 'Neat1_1.duplexgroup', package = 'paristools');
+
+duplex_group <- paristools::read_duplexgroup(duplexgroup_file)
+duplex_group
 ```
+
+refer to `read_bed()`
+
+
+
+# calculate coverage
+
+## reference coverage
+
+```{r}
+loc_df <- mapping %>% paristools::sam_to_loc_df() 
+loc_df
+
+ref_coverage <- loc_df %>% paristools::cal_coverage()
+ref_coverage
+```
+
+```{r}
+ggplot(ref_coverage) + 
+    geom_col(aes(pos, n_reads)) + 
+    facet_wrap(~strand, ncol = 1) + 
+    labs(x = 'position', y = 'number of reads')
+```
+
+## duplex group segment average coverage 
+
+```{r}
+dg_coverage <- paristools::get_dg_coverage(duplex_group, ref_coverage)
+dg_coverage
+```
+
+```{r}
+dg_coverage %>% select(-strand) %>% spread('pair', 'n_reads') %>%
+    ggplot() + geom_point(aes(left, right))
+```
+
+
+
+# others 
+
+```{r}
+mapping %>% mutate(strand = map_chr(FLAG, paristools:::get_strand))
+```
+

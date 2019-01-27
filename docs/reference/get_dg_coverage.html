@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>calculate average coverage of duplex segment — get_dg_coverage • paristools</title>
+<title>calculate average coverage of duplex group segment — get_dg_coverage • paristools</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="calculate average coverage of duplex segment — get_dg_coverage" />
+<meta property="og:title" content="calculate average coverage of duplex group segment — get_dg_coverage" />
 
-<meta property="og:description" content="calculate average coverage of duplex segment" />
+<meta property="og:description" content="calculate average coverage of duplex group segment" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -105,14 +105,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>calculate average coverage of duplex segment</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dongzhuoer/paristools/blob/master/R/main.R'><code>R/main.R</code></a></small>
+    <h1>calculate average coverage of duplex group segment</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dongzhuoer/paristools/blob/master/R/coverage.R'><code>R/coverage.R</code></a></small>
     <div class="hidden name"><code>get_dg_coverage.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>calculate average coverage of duplex segment</p>
+    <p>calculate average coverage of duplex group segment</p>
     
     </div>
 
@@ -140,9 +140,23 @@
     <pre class="examples"><div class='input'><span class='no'>sam_file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>'extdata'</span>, <span class='st'>'Neat1_1.Aligend_trunc.sam'</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'paristools'</span>)
 <span class='no'>duplexgroup_file</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/system.file'>system.file</a></span>(<span class='st'>'extdata'</span>, <span class='st'>'Neat1_1.duplexgroup'</span>, <span class='kw'>package</span> <span class='kw'>=</span> <span class='st'>'paristools'</span>);
 <span class='fu'>get_dg_coverage</span>(
-    <span class='no'>sam_file</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='read_sam.html'>read_sam</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='sam_to_loc_df.html'>sam_to_loc_df</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='cal_coverage.html'>cal_coverage</a></span>(),
-    <span class='fu'><a href='read_duplexgroup.html'>read_duplexgroup</a></span>(<span class='no'>duplexgroup_file</span>)
-)</div><div class='output co'>#&gt; <span class='error'>Error in ~pair == "left": object 'pair' not found</span></div></pre>
+    <span class='fu'><a href='read_duplexgroup.html'>read_duplexgroup</a></span>(<span class='no'>duplexgroup_file</span>),
+    <span class='no'>sam_file</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='read_sam.html'>read_sam</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='sam_to_loc_df.html'>sam_to_loc_df</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='cal_coverage.html'>cal_coverage</a></span>()
+)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 1,884 x 6</span><span>
+#&gt;    id    chrom strand pair  n_reads support
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span>   </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span>
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span> 0     neat1 +      left     22.8       2
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span> 0     neat1 +      right    26.1       2
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span> 1     neat1 +      left     22.8       2
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span> 1     neat1 +      right    66.8       2
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span> 100   neat1 +      left     57.6       2
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span> 100   neat1 +      right    38.2       2
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span> 1000  neat1 +      left     56.2       2
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span> 1000  neat1 +      right    50.1       2
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span> 1001  neat1 +      left     58.6       2
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span> 1001  neat1 +      right    43         2
+#&gt; </span><span style='color: #949494;'># … with 1,874 more rows</span><span></div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -1,4 +1,4 @@
-testthat::context('Testing read-sam.R')
+testthat::context('Testing read.R')
 if (basename(getwd()) == 'testthat') setwd('../..')  # workspace is reset per file
 
 testthat::test_that('read_sam()', {
@@ -19,4 +19,25 @@ testthat::test_that('read_sam()', {
 
 
 
+testthat::test_that('read_bed()', {
+    sample_bed <- paste(
+        'chr22\t1000\t5000\tcloneA\t960\t+',
+        'chr22\t2000\t6000\tcloneB\t900\t-',
+        sep = '\n'
+    )
+    bed <- read_bed(sample_bed)
+    testthat::expect_true(tibble::is_tibble(bed))
+    testthat::expect_identical(dim(bed), c(2L, 6L))
+    testthat::expect_identical(
+        colnames(bed), 
+        c("chrom", "start", "end", "name", "score", "strand")
+    )
+    testthat::expect_identical(
+        purrr::map_chr(bed, typeof) %>% purrr::set_names(NULL), 
+        c("character", "integer", "integer", "character", "integer", "character")
+    )
+})
 
+
+chr22 1000 5000 cloneA 960 +
+chr22 2000 6000 cloneB 900 -

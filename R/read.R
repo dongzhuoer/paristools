@@ -5,7 +5,7 @@ NULL
 
 #' @title read `.sam` file
 #' 
-#' @inheritParams read_duplexgroup
+#' @param file string. path to input file, passed onto [readr::read_lines()]
 #' 
 #' @return a tibble of 11 variables
 #' 
@@ -35,15 +35,20 @@ read_sam <- function(file) {
         dplyr::mutate_at(c(2, 4, 5, 8, 9), as.integer)
 }
 
-#' @title read `.sam` file
+#' @title read `.bed` file
 #' 
-#' @inheritParams read_duplexgroup
+#' @param file string. path to input file, passed onto [readr::read_tsv()]
 #' @param ... passed on to [readr::read_tsv()]
 #' 
 #' @return a tibble of 6 variables
 #' 
 #' @examples 
-#' NULL
+#' sample_bed <- paste(
+#'     'chr22\t1000\t5000\tcloneA\t960\t+',
+#'     'chr22\t2000\t6000\tcloneB\t900\t-',
+#'     sep = '\n'
+#' )
+#' read_bed(sample_bed)
 #' 
 #' @export
 

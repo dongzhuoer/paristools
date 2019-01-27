@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>read <code>.sam</code> file — read_bed • paristools</title>
+<title>read <code>.bed</code> file — read_bed • paristools</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="read <code>.sam</code> file — read_bed" />
+<meta property="og:title" content="read <code>.bed</code> file — read_bed" />
 
-<meta property="og:description" content="read .sam file" />
+<meta property="og:description" content="read .bed file" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -105,14 +105,14 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>read <code>.sam</code> file</h1>
-    <small class="dont-index">Source: <a href='https://github.com/dongzhuoer/paristools/blob/master/R/sam.R'><code>R/sam.R</code></a></small>
+    <h1>read <code>.bed</code> file</h1>
+    <small class="dont-index">Source: <a href='https://github.com/dongzhuoer/paristools/blob/master/R/read.R'><code>R/read.R</code></a></small>
     <div class="hidden name"><code>read_bed.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>read <code>.sam</code> file</p>
+    <p>read <code>.bed</code> file</p>
     
     </div>
 
@@ -123,7 +123,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>file</th>
-      <td><p>string. path to input file, passed onto <code><a href='https://readr.tidyverse.org/reference/read_file.html'>readr::read_file()</a></code></p></td>
+      <td><p>string. path to input file, passed onto <code><a href='https://readr.tidyverse.org/reference/read_delim.html'>readr::read_tsv()</a></code></p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -137,8 +137,17 @@
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='kw'>NULL</span></div><div class='output co'>#&gt; NULL</div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>sample_bed</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/paste'>paste</a></span>(
+    <span class='st'>'chr22\t1000\t5000\tcloneA\t960\t+'</span>,
+    <span class='st'>'chr22\t2000\t6000\tcloneB\t900\t-'</span>,
+    <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>'\n'</span>
+)
+<span class='fu'>read_bed</span>(<span class='no'>sample_bed</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 2 x 6</span><span>
+#&gt;   chrom start   end name   score strand
+#&gt;   </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span>  </span><span style='color: #949494;font-style: italic;'>&lt;int&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> 
+#&gt; </span><span style='color: #BCBCBC;'>1</span><span> chr22  </span><span style='text-decoration: underline;'>1</span><span>000  </span><span style='text-decoration: underline;'>5</span><span>000 cloneA   960 +     
+#&gt; </span><span style='color: #BCBCBC;'>2</span><span> chr22  </span><span style='text-decoration: underline;'>2</span><span>000  </span><span style='text-decoration: underline;'>6</span><span>000 cloneB   900 -     </div><div class='input'>
+</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -1,4 +1,4 @@
-testthat::context('Testing main.R')
+testthat::context('Testing coverage.R')
 if (basename(getwd()) == 'testthat') setwd('../..')  # workspace is reset per file
 
 
