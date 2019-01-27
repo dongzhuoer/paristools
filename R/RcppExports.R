@@ -16,11 +16,11 @@
 NULL
 
 test_parse_CIGAR <- function(chrom, flag, pos, CIGAR, SEQ_len) {
-    .Call('_paristools_test_parse_CIGAR', PACKAGE = 'paristools', chrom, flag, pos, CIGAR, SEQ_len)
+    .Call(`_paristools_test_parse_CIGAR`, chrom, flag, pos, CIGAR, SEQ_len)
 }
 
 sam_to_loc_df <- function(sam) {
-    .Call('_paristools_sam_to_loc_df', PACKAGE = 'paristools', sam)
+    .Call(`_paristools_sam_to_loc_df`, sam)
 }
 
 #' @title calculate genome coverage for one chromosome
@@ -36,23 +36,23 @@ sam_to_loc_df <- function(sam) {
 NULL
 
 get_strand <- function(flag) {
-    .Call('_paristools_get_strand', PACKAGE = 'paristools', flag)
+    .Call(`_paristools_get_strand`, flag)
 }
 
 test_as_loc_df <- function() {
-    .Call('_paristools_test_as_loc_df', PACKAGE = 'paristools')
+    .Call(`_paristools_test_as_loc_df`)
 }
 
 cal_coverage_impl <- function(loc_df) {
-    .Call('_paristools_cal_coverage_impl', PACKAGE = 'paristools', loc_df)
+    .Call(`_paristools_cal_coverage_impl`, loc_df)
 }
 
 test2 <- function(df) {
-    .Call('_paristools_test2', PACKAGE = 'paristools', df)
+    .Call(`_paristools_test2`, df)
 }
 
 cpp_version <- function() {
-    .Call('_paristools_cpp_version', PACKAGE = 'paristools')
+    .Call(`_paristools_cpp_version`)
 }
 
 # Register entry points for exported C++ functions
