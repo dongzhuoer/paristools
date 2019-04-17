@@ -1,5 +1,5 @@
 testthat::context('Testing main.cpp')
-if (basename(getwd()) == 'testthat') setwd('../..')  # workspace is reset per file
+setwd(here::here(''))  # workspace is reset per file
 
 testthat::test_that('parse_CIGAR()', {
     testthat::expect_true(T);

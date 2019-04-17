@@ -1,5 +1,5 @@
 testthat::context('Testing read-dg.R')
-if (basename(getwd()) == 'testthat') setwd('../..')  # workspace is reset per file
+setwd(here::here(''))  # workspace is reset per file
 
 
 # parse_loc ------------------

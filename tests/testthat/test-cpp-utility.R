@@ -1,5 +1,5 @@
 testthat::context('Testing utility.cpp')
-if (basename(getwd()) == 'testthat') setwd('../..')  # workspace is reset per file
+setwd(here::here(''))  # workspace is reset per file
 
 testthat::test_that('get_strand()', {
     testthat::expect_identical(

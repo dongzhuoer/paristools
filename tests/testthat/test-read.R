@@ -1,5 +1,5 @@
 testthat::context('Testing read.R')
-if (basename(getwd()) == 'testthat') setwd('../..')  # workspace is reset per file
+setwd(here::here(''))  # workspace is reset per file
 
 testthat::test_that('read_sam()', {
     sam <- read_sam('inst/extdata/Neat1_1.Aligend_trunc.sam')
