@@ -20,10 +20,12 @@ Imports:
     readr,
     Rcpp,
     Rcppzhuoer
+Suggests:
+    prettydoc
+Remotes:
+    dongzhuoer/Rcppzhuoer,
+    tidyverse/dplyr
 VignetteBuilder: knitr, rmarkdown
 LinkingTo: 
     Rcpp,
     Rcppzhuoer
-Remotes:
-    dongzhuoer/Rcppzhuoer,
-    tidyverse/dplyr
