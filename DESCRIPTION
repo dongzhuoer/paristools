@@ -23,8 +23,7 @@ Imports:
 Suggests:
     prettydoc
 Remotes:
-    dongzhuoer/Rcppzhuoer,
-    tidyverse/dplyr
+    dongzhuoer/Rcppzhuoer
 VignetteBuilder: knitr, rmarkdown
 LinkingTo: 
     Rcpp,
