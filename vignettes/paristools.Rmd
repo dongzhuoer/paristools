@@ -14,7 +14,8 @@ knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
 ```{r message=FALSE}
-library(tidyverse)
+library(magrittr)
+library(ggplot2)
 ```
 
 
@@ -66,7 +67,7 @@ dg_coverage
 ```
 
 ```{r}
-dg_coverage %>% select(-strand) %>% spread('pair', 'n_reads') %>%
+dg_coverage %>% dplyr::select(-strand) %>% tidyr::spread('pair', 'n_reads') %>%
     ggplot() + geom_point(aes(left, right))
 ```
 
@@ -75,6 +76,6 @@ dg_coverage %>% select(-strand) %>% spread('pair', 'n_reads') %>%
 # others 
 
 ```{r}
-mapping %>% mutate(strand = map_chr(FLAG, paristools:::get_strand))
+mapping %>% dplyr::mutate(strand = purrr::map_chr(FLAG, paristools:::get_strand))
 ```
 

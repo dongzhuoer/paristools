@@ -21,7 +21,10 @@ Imports:
     Rcpp,
     Rcppzhuoer
 Suggests:
-    prettydoc
+    prettydoc,
+    tidyr,
+    purrr,
+    ggplot2
 Remotes:
     dongzhuoer/Rcppzhuoer
 VignetteBuilder: knitr, rmarkdown
