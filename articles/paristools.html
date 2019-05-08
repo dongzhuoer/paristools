@@ -74,7 +74,7 @@
       <h1>Introduction to paristools</h1>
                         <h4 class="author">Zhuoer Dong</h4>
             
-            <h4 class="date">2019-05-05</h4>
+            <h4 class="date">2019-05-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/dongzhuoer/paristools/blob/master/vignettes/paristools.Rmd"><code>vignettes/paristools.Rmd</code></a></small>
       <div class="hidden name"><code>paristools.Rmd</code></div>
@@ -90,7 +90,7 @@
 <a href="#read-files" class="anchor"></a>read files</h1>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">sam_file &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">'extdata'</span>, <span class="st">'Neat1_1.Aligend_trunc.sam'</span>, <span class="dt">package =</span> <span class="st">'paristools'</span>)</a>
 <a class="sourceLine" id="cb2-2" title="2"></a>
-<a class="sourceLine" id="cb2-3" title="3">mapping &lt;-<span class="st"> </span>paristools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/paristools/topics/read_sam">read_sam</a></span>(sam_file)</a>
+<a class="sourceLine" id="cb2-3" title="3">mapping &lt;-<span class="st"> </span>paristools<span class="op">::</span><span class="kw"><a href="https://dongzhuoer.github.io/paristools/reference/read_sam.html">read_sam</a></span>(sam_file)</a>
 <a class="sourceLine" id="cb2-4" title="4">mapping</a>
 <a class="sourceLine" id="cb2-5" title="5"><span class="co">#&gt; # A tibble: 4,996 x 11</span></a>
 <a class="sourceLine" id="cb2-6" title="6"><span class="co">#&gt;    QNAME     FLAG RNAME   POS  MAPQ CIGAR RNEXT PNEXT  TLEN SEQ     QUAL   </span></a>
@@ -108,7 +108,7 @@
 <a class="sourceLine" id="cb2-18" title="18"><span class="co">#&gt; # … with 4,986 more rows</span></a></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">duplexgroup_file &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">'extdata'</span>, <span class="st">'Neat1_1.duplexgroup'</span>, <span class="dt">package =</span> <span class="st">'paristools'</span>);</a>
 <a class="sourceLine" id="cb3-2" title="2"></a>
-<a class="sourceLine" id="cb3-3" title="3">duplex_group &lt;-<span class="st"> </span>paristools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/paristools/topics/read_duplexgroup">read_duplexgroup</a></span>(duplexgroup_file)</a>
+<a class="sourceLine" id="cb3-3" title="3">duplex_group &lt;-<span class="st"> </span>paristools<span class="op">::</span><span class="kw"><a href="https://dongzhuoer.github.io/paristools/reference/read_duplexgroup.html">read_duplexgroup</a></span>(duplexgroup_file)</a>
 <a class="sourceLine" id="cb3-4" title="4">duplex_group</a>
 <a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt; # A tibble: 15,964 x 8</span></a>
 <a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt;    chrom strand start   end pair  type   id    score</span></a>
@@ -132,7 +132,7 @@
 <div id="reference-coverage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#reference-coverage" class="anchor"></a>reference coverage</h2>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">loc_df &lt;-<span class="st"> </span>mapping <span class="op">%&gt;%</span><span class="st"> </span>paristools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/paristools/topics/sam_to_loc_df">sam_to_loc_df</a></span>() </a>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">loc_df &lt;-<span class="st"> </span>mapping <span class="op">%&gt;%</span><span class="st"> </span>paristools<span class="op">::</span><span class="kw"><a href="https://dongzhuoer.github.io/paristools/reference/sam_to_loc_df.html">sam_to_loc_df</a></span>() </a>
 <a class="sourceLine" id="cb4-2" title="2">loc_df</a>
 <a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt; # A tibble: 5,859 x 4</span></a>
 <a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt;    chrom strand start   end</span></a>
@@ -149,7 +149,7 @@
 <a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt; 10 neat1 -        658   683</span></a>
 <a class="sourceLine" id="cb4-16" title="16"><span class="co">#&gt; # … with 5,849 more rows</span></a>
 <a class="sourceLine" id="cb4-17" title="17"></a>
-<a class="sourceLine" id="cb4-18" title="18">ref_coverage &lt;-<span class="st"> </span>loc_df <span class="op">%&gt;%</span><span class="st"> </span>paristools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/paristools/topics/cal_coverage">cal_coverage</a></span>()</a>
+<a class="sourceLine" id="cb4-18" title="18">ref_coverage &lt;-<span class="st"> </span>loc_df <span class="op">%&gt;%</span><span class="st"> </span>paristools<span class="op">::</span><span class="kw"><a href="https://dongzhuoer.github.io/paristools/reference/cal_coverage.html">cal_coverage</a></span>()</a>
 <a class="sourceLine" id="cb4-19" title="19">ref_coverage</a>
 <a class="sourceLine" id="cb4-20" title="20"><span class="co">#&gt; # A tibble: 6,354 x 4</span></a>
 <a class="sourceLine" id="cb4-21" title="21"><span class="co">#&gt;    chrom strand   pos n_reads</span></a>
@@ -174,7 +174,7 @@
 <div id="duplex-group-segment-average-coverage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#duplex-group-segment-average-coverage" class="anchor"></a>duplex group segment average coverage</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">dg_coverage &lt;-<span class="st"> </span>paristools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/paristools/topics/get_dg_coverage">get_dg_coverage</a></span>(duplex_group, ref_coverage)</a>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">dg_coverage &lt;-<span class="st"> </span>paristools<span class="op">::</span><span class="kw"><a href="https://dongzhuoer.github.io/paristools/reference/get_dg_coverage.html">get_dg_coverage</a></span>(duplex_group, ref_coverage)</a>
 <a class="sourceLine" id="cb6-2" title="2">dg_coverage</a>
 <a class="sourceLine" id="cb6-3" title="3"><span class="co">#&gt; # A tibble: 1,884 x 6</span></a>
 <a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt;    id    chrom strand pair  n_reads support</span></a>
