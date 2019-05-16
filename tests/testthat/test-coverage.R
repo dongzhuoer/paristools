@@ -3,7 +3,7 @@ setwd(here::here(''))  # workspace is reset per file
 
 
 testthat::test_that('cal_coverage()', {
-    loc_df = tibble::tibble(chrom = c('I', 'II'), start = c(1, 2), end = c(4, 3), strand = c('+', '-'))
+    loc_df = tibble::tibble(chrom = c('I', 'II'), strand = c('+', '-'), start = c(1, 2), end = c(4, 3))
     
     testthat::expect_identical(
         cal_coverage(loc_df),

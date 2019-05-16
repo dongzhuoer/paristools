@@ -57,54 +57,34 @@ List test_as_loc_df() {
 //' 
 //' @details we use 1-based coordinate, [start, end]
 //' 
-//' @param loc_df data.frame. must contain 3 columns: `strand`, `start`, `end`
+//' @param chrom_loc_df data.frame. Locations on one chromosome, columns are `strand`, `start`, `end`. There must be at least one region of minimum length 1.
 //' 
-//' @return list. two elements, `+` & `-`. each is a integer representing the genome, index is 1-based genome position, value is number of reads covering that position
+//' @return tibble. Columns are `pos`, `+`, `-`, the latter two are integers representing the genome, index is 1-based genome position, value is number of reads covering that position.
 //' 
 //' @keywords internal
 
 // [[Rcpp::export]]
-List cal_coverage_impl(DataFrame loc_df) {
-    CharacterVector strand = loc_df["strand"];
-    IntegerVector   start  = loc_df["start"];
-    IntegerVector   end    = loc_df["end"];
+List cal_coverage_impl(DataFrame chrom_loc_df) {
+    CharacterVector strand = chrom_loc_df["strand"];
+    IntegerVector   start  = chrom_loc_df["start"];
+    IntegerVector   end    = chrom_loc_df["end"];
     // here we use vector to represent the genome e.g., vec[4] store reads coverage at 5th base
     // for a large genome, when only a minority bases are covered, 
     //    we may need to consider map to save memory (at the sacrifice of time)
-    unsigned long genom_len = *std::max_element(end.begin(), end.end());
+    decltype(end[0]) genom_len = *std::max_element(end.begin(), end.end());
 
     std::map<String, IntegerVector> n_reads = {};
     n_reads["+"] = IntegerVector(genom_len);
     n_reads["-"] = IntegerVector(genom_len);
 
-    for (unsigned long i = {0u}; i < start.size(); ++i) 
-        for (unsigned long j = start[i]; j <= end[i]; ++j)
+    for (decltype(start.size()) i = {0u}; i < start.size(); ++i) 
+        for (decltype(end[0]) j = start[i]; j <= end[i]; ++j)
             n_reads[strand[i]][j - 1] +=1;
 
-    return List::create(Named("+") = n_reads["+"], Named("-") = n_reads["-"]); 
+    List result = List::create(seq_len(genom_len), n_reads["+"], n_reads["-"]);
+    result.attr("names") = CharacterVector::create("pos", "+", "-");
+    return Rcppzhuoer::as_tibble(result);
 }
-
-
-
-
-
-
-// [[Rcpp::export]]
-List test2(const DataFrame & df) {
-    IntegerVector a = df[0];
-    a[0] = 10;
-
-    return List::create(a);
-
-    return List();
-    
-}
-
-/*** R
-# test2(data.frame(a = 1:10))
-*/
-
-
 
 
 
@@ -112,9 +92,6 @@ List test2(const DataFrame & df) {
 int cpp_version() {
     return __cplusplus;
 }
-/*** R
-cpp_version()
-*/
 
 
 

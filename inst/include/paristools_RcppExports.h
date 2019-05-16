@@ -108,7 +108,7 @@ namespace paristools {
         return Rcpp::as<List >(rcpp_result_gen);
     }
 
-    inline List cal_coverage_impl(DataFrame loc_df) {
+    inline List cal_coverage_impl(DataFrame chrom_loc_df) {
         typedef SEXP(*Ptr_cal_coverage_impl)(SEXP);
         static Ptr_cal_coverage_impl p_cal_coverage_impl = NULL;
         if (p_cal_coverage_impl == NULL) {
@@ -118,28 +118,7 @@ namespace paristools {
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_cal_coverage_impl(Shield<SEXP>(Rcpp::wrap(loc_df)));
-        }
-        if (rcpp_result_gen.inherits("interrupted-error"))
-            throw Rcpp::internal::InterruptedException();
-        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
-            throw Rcpp::LongjumpException(rcpp_result_gen);
-        if (rcpp_result_gen.inherits("try-error"))
-            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
-        return Rcpp::as<List >(rcpp_result_gen);
-    }
-
-    inline List test2(const DataFrame& df) {
-        typedef SEXP(*Ptr_test2)(SEXP);
-        static Ptr_test2 p_test2 = NULL;
-        if (p_test2 == NULL) {
-            validateSignature("List(*test2)(const DataFrame&)");
-            p_test2 = (Ptr_test2)R_GetCCallable("paristools", "_paristools_test2");
-        }
-        RObject rcpp_result_gen;
-        {
-            RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_test2(Shield<SEXP>(Rcpp::wrap(df)));
+            rcpp_result_gen = p_cal_coverage_impl(Shield<SEXP>(Rcpp::wrap(chrom_loc_df)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();

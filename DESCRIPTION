@@ -15,6 +15,7 @@ Roxygen: list(markdown = TRUE, roclets=c('rd', 'collate', 'namespace'))
 Imports:
     magrittr,
     dplyr,
+    tidyr,
     stringr,
     tibble,
     readr,
@@ -22,7 +23,6 @@ Imports:
     Rcppzhuoer
 Suggests:
     prettydoc,
-    tidyr,
     purrr,
     ggplot2
 Remotes:

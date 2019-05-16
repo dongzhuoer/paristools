@@ -28,9 +28,9 @@ sam_to_loc_df <- function(sam) {
 #' 
 #' @details we use 1-based coordinate, [start, end]
 #' 
-#' @param loc_df data.frame. must contain 3 columns: `strand`, `start`, `end`
+#' @param chrom_loc_df data.frame. Locations on one chromosome, columns are `strand`, `start`, `end`. There must be at least one region of minimum length 1.
 #' 
-#' @return list. two elements, `+` & `-`. each is a integer representing the genome, index is 1-based genome position, value is number of reads covering that position
+#' @return tibble. Columns are `pos`, `+`, `-`, the latter two are integers representing the genome, index is 1-based genome position, value is number of reads covering that position.
 #' 
 #' @keywords internal
 NULL
@@ -43,12 +43,8 @@ test_as_loc_df <- function() {
     .Call(`_paristools_test_as_loc_df`)
 }
 
-cal_coverage_impl <- function(loc_df) {
-    .Call(`_paristools_cal_coverage_impl`, loc_df)
-}
-
-test2 <- function(df) {
-    .Call(`_paristools_test2`, df)
+cal_coverage_impl <- function(chrom_loc_df) {
+    .Call(`_paristools_cal_coverage_impl`, chrom_loc_df)
 }
 
 cpp_version <- function() {

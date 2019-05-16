@@ -80,7 +80,7 @@ List sam_to_loc_df(DataFrame sam) {
     CharacterVector SEQ   = sam["SEQ"];
 
     std::list<loc> loc_list {};
-    for (unsigned long i {0}; i < chrom.size(); ++i) {
+    for (decltype(chrom.size()) i {0}; i < chrom.size(); ++i) {
         if (i % 10000 == 0) Rcpp::checkUserInterrupt();
         String seq = SEQ[i];
         loc_list.splice(

@@ -13,18 +13,13 @@
 
 # loc_df = tibble::tibble(chrom = c('I', 'II'), start = c(1, 2), end = c(4, 3), strand = c('+', '-'))
 cal_coverage <- function(loc_df) {
-    cal_coverage_impl_df <- function(loc_df, chrom) {
-        n_reads_l <- cal_coverage_impl(loc_df) 
-        plus  <- n_reads_l[["+"]]
-        minus <- n_reads_l[["-"]]
-        
-        dplyr::bind_rows(
-            tibble::tibble(strand = "+", pos = seq_along(plus),  n_reads = plus),
-            tibble::tibble(strand = "-", pos = seq_along(minus), n_reads = minus)
-        )
-    }
-    
-    loc_df %>% dplyr::group_by(chrom) %>% dplyr::group_map(cal_coverage_impl_df) %>% dplyr::ungroup()
+    loc_df %>% tidyr::nest(-"chrom") %>% 
+        dplyr::mutate(
+            data = data %>% lapply(cal_coverage_impl) %>%
+                lapply(tidyr::gather, 'strand', 'n_reads', -'pos')
+        ) %>% 
+        tidyr::unnest() %>%  
+        dplyr::select('chrom', 'strand', 'pos', 'n_reads')
 }
 
 

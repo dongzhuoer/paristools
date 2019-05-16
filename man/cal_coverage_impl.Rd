@@ -4,10 +4,10 @@
 \alias{cal_coverage_impl}
 \title{calculate genome coverage for one chromosome}
 \arguments{
-\item{loc_df}{data.frame. must contain 3 columns: \code{strand}, \code{start}, \code{end}}
+\item{chrom_loc_df}{data.frame. Locations on one chromosome, columns are \code{strand}, \code{start}, \code{end}. There must be at least one region of minimum length 1.}
 }
 \value{
-list. two elements, \code{+} & \code{-}. each is a integer representing the genome, index is 1-based genome position, value is number of reads covering that position
+tibble. Columns are \code{pos}, \code{+}, \code{-}, the latter two are integers representing the genome, index is 1-based genome position, value is number of reads covering that position.
 }
 \description{
 calculate genome coverage for one chromosome
