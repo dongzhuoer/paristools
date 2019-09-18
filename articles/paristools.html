@@ -74,7 +74,7 @@
       <h1>Introduction to paristools</h1>
                         <h4 class="author">Zhuoer Dong</h4>
             
-            <h4 class="date">2019-09-11</h4>
+            <h4 class="date">2019-09-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/dongzhuoer/paristools/blob/master/vignettes/paristools.Rmd"><code>vignettes/paristools.Rmd</code></a></small>
       <div class="hidden name"><code>paristools.Rmd</code></div>
@@ -150,21 +150,25 @@
 <span id="cb4-16"><a href="#cb4-16"></a><span class="co">#&gt; # … with 5,849 more rows</span></span>
 <span id="cb4-17"><a href="#cb4-17"></a></span>
 <span id="cb4-18"><a href="#cb4-18"></a>ref_coverage &lt;-<span class="st"> </span>loc_df <span class="op">%&gt;%</span><span class="st"> </span>paristools<span class="op">::</span><span class="kw"><a href="https://dongzhuoer.github.io/paristools/reference/cal_coverage.html">cal_coverage</a></span>()</span>
-<span id="cb4-19"><a href="#cb4-19"></a>ref_coverage</span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="co">#&gt; # A tibble: 6,354 x 4</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a><span class="co">#&gt;    chrom strand   pos n_reads</span></span>
-<span id="cb4-22"><a href="#cb4-22"></a><span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;  &lt;int&gt;   &lt;int&gt;</span></span>
-<span id="cb4-23"><a href="#cb4-23"></a><span class="co">#&gt;  1 neat1 +          1      14</span></span>
-<span id="cb4-24"><a href="#cb4-24"></a><span class="co">#&gt;  2 neat1 +          2      15</span></span>
-<span id="cb4-25"><a href="#cb4-25"></a><span class="co">#&gt;  3 neat1 +          3      15</span></span>
-<span id="cb4-26"><a href="#cb4-26"></a><span class="co">#&gt;  4 neat1 +          4      15</span></span>
-<span id="cb4-27"><a href="#cb4-27"></a><span class="co">#&gt;  5 neat1 +          5      16</span></span>
-<span id="cb4-28"><a href="#cb4-28"></a><span class="co">#&gt;  6 neat1 +          6      17</span></span>
-<span id="cb4-29"><a href="#cb4-29"></a><span class="co">#&gt;  7 neat1 +          7      17</span></span>
-<span id="cb4-30"><a href="#cb4-30"></a><span class="co">#&gt;  8 neat1 +          8      20</span></span>
-<span id="cb4-31"><a href="#cb4-31"></a><span class="co">#&gt;  9 neat1 +          9      23</span></span>
-<span id="cb4-32"><a href="#cb4-32"></a><span class="co">#&gt; 10 neat1 +         10      24</span></span>
-<span id="cb4-33"><a href="#cb4-33"></a><span class="co">#&gt; # … with 6,344 more rows</span></span></code></pre></div>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="co">#&gt; Warning: All elements of `...` must be named.</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a><span class="co">#&gt; Did you want `data = c(strand, start, end)`?</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a><span class="co">#&gt; Warning: `cols` is now required.</span></span>
+<span id="cb4-22"><a href="#cb4-22"></a><span class="co">#&gt; Please use `cols = c(data)`</span></span>
+<span id="cb4-23"><a href="#cb4-23"></a>ref_coverage</span>
+<span id="cb4-24"><a href="#cb4-24"></a><span class="co">#&gt; # A tibble: 6,354 x 4</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a><span class="co">#&gt;    chrom strand   pos n_reads</span></span>
+<span id="cb4-26"><a href="#cb4-26"></a><span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;  &lt;int&gt;   &lt;int&gt;</span></span>
+<span id="cb4-27"><a href="#cb4-27"></a><span class="co">#&gt;  1 neat1 +          1      14</span></span>
+<span id="cb4-28"><a href="#cb4-28"></a><span class="co">#&gt;  2 neat1 +          2      15</span></span>
+<span id="cb4-29"><a href="#cb4-29"></a><span class="co">#&gt;  3 neat1 +          3      15</span></span>
+<span id="cb4-30"><a href="#cb4-30"></a><span class="co">#&gt;  4 neat1 +          4      15</span></span>
+<span id="cb4-31"><a href="#cb4-31"></a><span class="co">#&gt;  5 neat1 +          5      16</span></span>
+<span id="cb4-32"><a href="#cb4-32"></a><span class="co">#&gt;  6 neat1 +          6      17</span></span>
+<span id="cb4-33"><a href="#cb4-33"></a><span class="co">#&gt;  7 neat1 +          7      17</span></span>
+<span id="cb4-34"><a href="#cb4-34"></a><span class="co">#&gt;  8 neat1 +          8      20</span></span>
+<span id="cb4-35"><a href="#cb4-35"></a><span class="co">#&gt;  9 neat1 +          9      23</span></span>
+<span id="cb4-36"><a href="#cb4-36"></a><span class="co">#&gt; 10 neat1 +         10      24</span></span>
+<span id="cb4-37"><a href="#cb4-37"></a><span class="co">#&gt; # … with 6,344 more rows</span></span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(ref_coverage) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(pos, n_reads)) <span class="op">+</span><span class="st"> </span></span>
 <span id="cb5-3"><a href="#cb5-3"></a><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(<span class="op">~</span>strand, <span class="dt">ncol =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span></span>

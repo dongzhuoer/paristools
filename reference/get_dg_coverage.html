@@ -142,7 +142,9 @@
 <span class='fu'>get_dg_coverage</span>(
     <span class='fu'><a href='read_duplexgroup.html'>read_duplexgroup</a></span>(<span class='no'>duplexgroup_file</span>),
     <span class='no'>sam_file</span> <span class='kw'>%&gt;%</span> <span class='fu'><a href='read_sam.html'>read_sam</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='sam_to_loc_df.html'>sam_to_loc_df</a></span>() <span class='kw'>%&gt;%</span> <span class='fu'><a href='cal_coverage.html'>cal_coverage</a></span>()
-)</div><div class='output co'>#&gt; # A tibble: 1,884 x 6
+)</div><div class='output co'>#&gt; <span class='warning'>Warning: All elements of `...` must be named.</span>
+#&gt; <span class='warning'>Did you want `data = c(strand, start, end)`?</span></div><div class='output co'>#&gt; <span class='warning'>Warning: `cols` is now required.</span>
+#&gt; <span class='warning'>Please use `cols = c(data)`</span></div><div class='output co'>#&gt; # A tibble: 1,884 x 6
 #&gt;    id    chrom strand pair  n_reads support
 #&gt;    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;dbl&gt;   &lt;int&gt;
 #&gt;  1 0     neat1 +      left     22.8       2
