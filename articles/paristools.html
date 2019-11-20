@@ -76,7 +76,7 @@
       <h1>Introduction to paristools</h1>
                         <h4 class="author">Zhuoer Dong</h4>
             
-            <h4 class="date">2019-11-13</h4>
+            <h4 class="date">2019-11-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/dongzhuoer/paristools/blob/master/vignettes/paristools.Rmd"><code>vignettes/paristools.Rmd</code></a></small>
       <div class="hidden name"><code>paristools.Rmd</code></div>
@@ -95,18 +95,18 @@
 <span id="cb2-3"><a href="#cb2-3"></a>mapping &lt;-<span class="st"> </span>paristools<span class="op">::</span><span class="kw"><a href="https://dongzhuoer.github.io/paristools/reference/read_sam.html">read_sam</a></span>(sam_file)</span>
 <span id="cb2-4"><a href="#cb2-4"></a>mapping</span>
 <span id="cb2-5"><a href="#cb2-5"></a><span class="co">#&gt; # A tibble: 4,996 x 11</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt;    QNAME     FLAG RNAME   POS  MAPQ CIGAR RNEXT PNEXT  TLEN SEQ     QUAL   </span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt;    &lt;chr&gt;    &lt;int&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;  </span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt;  1 ST-E003…     0 neat1  2691   255 8S20… *         0     0 TCGTCC… JJAJFA…</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt;  2 ST-E003…    16 neat1   388   255 4S31M *         0     0 ACTCGG… &lt;-FF&lt;A…</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="co">#&gt;  3 ST-E003…     0 neat1  1653   255 2S32M *         0     0 TTGAGG… A&lt;F&lt;-A…</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co">#&gt;  4 ST-E003…     0 neat1  3043     3 5S38M *         0     0 ATTCCA… JJJJJJ…</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="co">#&gt;  5 ST-E003…   256 neat1  2534     3 5M50… *         0     0 ATTCCA… JJJJJJ…</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="co">#&gt;  6 ST-E003…     0 neat1  2979   255 24M9S *         0     0 TTTTGT… JJJJJF…</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co">#&gt;  7 ST-E003…     0 neat1  2995   255 41M   *         0     0 AAAAGT… JJJJJJ…</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#&gt;  8 ST-E003…     0 neat1   184   255 1S29M *         0     0 ATCCAA… JJJJJJ…</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#&gt;  9 ST-E003…     0 neat1   227     3 26M7… *         0     0 AGACCA… JFJJJJ…</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="co">#&gt; 10 ST-E003…   256 neat1   227     3 27M6S *         0     0 AGACCA… JFJJJJ…</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt;    QNAME      FLAG RNAME   POS  MAPQ CIGAR  RNEXT PNEXT  TLEN SEQ       QUAL    </span></span>
+<span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt;    &lt;chr&gt;     &lt;int&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;     &lt;chr&gt;   </span></span>
+<span id="cb2-8"><a href="#cb2-8"></a><span class="co">#&gt;  1 ST-E0031…     0 neat1  2691   255 8S20M… *         0     0 TCGTCCCC… JJAJFAJ…</span></span>
+<span id="cb2-9"><a href="#cb2-9"></a><span class="co">#&gt;  2 ST-E0031…    16 neat1   388   255 4S31M  *         0     0 ACTCGGCA… &lt;-FF&lt;A-…</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a><span class="co">#&gt;  3 ST-E0031…     0 neat1  1653   255 2S32M  *         0     0 TTGAGGAA… A&lt;F&lt;-AF…</span></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co">#&gt;  4 ST-E0031…     0 neat1  3043     3 5S38M  *         0     0 ATTCCAAT… JJJJJJJ…</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a><span class="co">#&gt;  5 ST-E0031…   256 neat1  2534     3 5M504… *         0     0 ATTCCAAT… JJJJJJJ…</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a><span class="co">#&gt;  6 ST-E0031…     0 neat1  2979   255 24M9S  *         0     0 TTTTGTGA… JJJJJFJ…</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="co">#&gt;  7 ST-E0031…     0 neat1  2995   255 41M    *         0     0 AAAAGTGG… JJJJJJJ…</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#&gt;  8 ST-E0031…     0 neat1   184   255 1S29M  *         0     0 ATCCAAAG… JJJJJJJ…</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a><span class="co">#&gt;  9 ST-E0031…     0 neat1   227     3 26M70… *         0     0 AGACCAGG… JFJJJJ7…</span></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="co">#&gt; 10 ST-E0031…   256 neat1   227     3 27M6S  *         0     0 AGACCAGG… JFJJJJ7…</span></span>
 <span id="cb2-18"><a href="#cb2-18"></a><span class="co">#&gt; # … with 4,986 more rows</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>duplexgroup_file &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span>(<span class="st">'extdata'</span>, <span class="st">'Neat1_1.duplexgroup'</span>, <span class="dt">package =</span> <span class="st">'paristools'</span>);</span>
 <span id="cb3-2"><a href="#cb3-2"></a></span>
@@ -206,18 +206,18 @@
 <a href="#others" class="anchor"></a>others</h1>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>mapping <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">strand =</span> purrr<span class="op">::</span><span class="kw"><a href="https://purrr.tidyverse.org/reference/map.html">map_chr</a></span>(FLAG, paristools<span class="op">:::</span>get_strand))</span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="co">#&gt; # A tibble: 4,996 x 12</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a><span class="co">#&gt;    QNAME  FLAG RNAME   POS  MAPQ CIGAR RNEXT PNEXT  TLEN SEQ   QUAL  strand</span></span>
-<span id="cb8-4"><a href="#cb8-4"></a><span class="co">#&gt;    &lt;chr&gt; &lt;int&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; </span></span>
-<span id="cb8-5"><a href="#cb8-5"></a><span class="co">#&gt;  1 ST-E…     0 neat1  2691   255 8S20… *         0     0 TCGT… JJAJ… +     </span></span>
-<span id="cb8-6"><a href="#cb8-6"></a><span class="co">#&gt;  2 ST-E…    16 neat1   388   255 4S31M *         0     0 ACTC… &lt;-FF… -     </span></span>
-<span id="cb8-7"><a href="#cb8-7"></a><span class="co">#&gt;  3 ST-E…     0 neat1  1653   255 2S32M *         0     0 TTGA… A&lt;F&lt;… +     </span></span>
-<span id="cb8-8"><a href="#cb8-8"></a><span class="co">#&gt;  4 ST-E…     0 neat1  3043     3 5S38M *         0     0 ATTC… JJJJ… +     </span></span>
-<span id="cb8-9"><a href="#cb8-9"></a><span class="co">#&gt;  5 ST-E…   256 neat1  2534     3 5M50… *         0     0 ATTC… JJJJ… +     </span></span>
-<span id="cb8-10"><a href="#cb8-10"></a><span class="co">#&gt;  6 ST-E…     0 neat1  2979   255 24M9S *         0     0 TTTT… JJJJ… +     </span></span>
-<span id="cb8-11"><a href="#cb8-11"></a><span class="co">#&gt;  7 ST-E…     0 neat1  2995   255 41M   *         0     0 AAAA… JJJJ… +     </span></span>
-<span id="cb8-12"><a href="#cb8-12"></a><span class="co">#&gt;  8 ST-E…     0 neat1   184   255 1S29M *         0     0 ATCC… JJJJ… +     </span></span>
-<span id="cb8-13"><a href="#cb8-13"></a><span class="co">#&gt;  9 ST-E…     0 neat1   227     3 26M7… *         0     0 AGAC… JFJJ… +     </span></span>
-<span id="cb8-14"><a href="#cb8-14"></a><span class="co">#&gt; 10 ST-E…   256 neat1   227     3 27M6S *         0     0 AGAC… JFJJ… +     </span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="co">#&gt;    QNAME    FLAG RNAME   POS  MAPQ CIGAR  RNEXT PNEXT  TLEN SEQ    QUAL   strand</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co">#&gt;    &lt;chr&gt;   &lt;int&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; </span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="co">#&gt;  1 ST-E00…     0 neat1  2691   255 8S20M… *         0     0 TCGTC… JJAJF… +     </span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="co">#&gt;  2 ST-E00…    16 neat1   388   255 4S31M  *         0     0 ACTCG… &lt;-FF&lt;… -     </span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co">#&gt;  3 ST-E00…     0 neat1  1653   255 2S32M  *         0     0 TTGAG… A&lt;F&lt;-… +     </span></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="co">#&gt;  4 ST-E00…     0 neat1  3043     3 5S38M  *         0     0 ATTCC… JJJJJ… +     </span></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="co">#&gt;  5 ST-E00…   256 neat1  2534     3 5M504… *         0     0 ATTCC… JJJJJ… +     </span></span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="co">#&gt;  6 ST-E00…     0 neat1  2979   255 24M9S  *         0     0 TTTTG… JJJJJ… +     </span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="co">#&gt;  7 ST-E00…     0 neat1  2995   255 41M    *         0     0 AAAAG… JJJJJ… +     </span></span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="co">#&gt;  8 ST-E00…     0 neat1   184   255 1S29M  *         0     0 ATCCA… JJJJJ… +     </span></span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="co">#&gt;  9 ST-E00…     0 neat1   227     3 26M70… *         0     0 AGACC… JFJJJ… +     </span></span>
+<span id="cb8-14"><a href="#cb8-14"></a><span class="co">#&gt; 10 ST-E00…   256 neat1   227     3 27M6S  *         0     0 AGACC… JFJJJ… +     </span></span>
 <span id="cb8-15"><a href="#cb8-15"></a><span class="co">#&gt; # … with 4,986 more rows</span></span></code></pre></div>
 </div>
   </div>
