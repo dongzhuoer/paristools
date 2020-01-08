@@ -4,8 +4,8 @@ Title: Utility for working with PARIS data
 Version: 0.0.0.9000
 Authors@R: person("Zhuoer", "Dong", email = "dongzhuoer@mail.nankai.edu.cn", 
     role = c("aut", "cre"))
-Description: refer to https://dongzhuoer.github.io/paristools
-URL: https://dongzhuoer.github.io/paristools, https://github.com/dongzhuoer/paristools
+Description: refer to https://github.com/dongzhuoer/paristools
+URL: https://pkgdown.dongzhuoer.com/dongzhuoer/paristools, https://github.com/dongzhuoer/paristools
 BugReports: https://github.com/dongzhuoer/paristools/issues
 License: file LICENSE
 Encoding: UTF-8

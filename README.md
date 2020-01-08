@@ -24,10 +24,3 @@ refer to `vignette('paristools')`.
 
 Refer to [xparis](https://github.com/dongzhuoer/xparis) for source of the data
 
-
-## develop
-
-1. Refer to this [post](https://dongzhuoer.github.io/_redirects/develop-upon-my-r-package.html)
-
-
-
