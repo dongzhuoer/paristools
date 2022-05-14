@@ -1,8 +1,9 @@
-pandoc: 2.8.1
-pkgdown: 1.4.1
+pandoc: '2.18'
+pkgdown: 2.0.3
 pkgdown_sha: ~
 articles:
   paristools: paristools.html
+last_built: 2022-05-14T08:48Z
 urls:
   reference: https://dongzhuoer.github.io/paristools/reference
   article: https://dongzhuoer.github.io/paristools/articles

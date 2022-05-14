@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://dongzhuoer.github.io/paristools/404.html</loc>
+  </url>
+  <url>
+    <loc>https://dongzhuoer.github.io/paristools/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://dongzhuoer.github.io/paristools/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>https://dongzhuoer.github.io/paristools/articles/paristools.html</loc>
+  </url>
+  <url>
+    <loc>https://dongzhuoer.github.io/paristools/authors.html</loc>
+  </url>
+  <url>
     <loc>https://dongzhuoer.github.io/paristools/index.html</loc>
+  </url>
+  <url>
+    <loc>https://dongzhuoer.github.io/paristools/news/index.html</loc>
   </url>
   <url>
     <loc>https://dongzhuoer.github.io/paristools/reference/cal_coverage.html</loc>
@@ -11,6 +29,9 @@
   </url>
   <url>
     <loc>https://dongzhuoer.github.io/paristools/reference/get_dg_coverage.html</loc>
+  </url>
+  <url>
+    <loc>https://dongzhuoer.github.io/paristools/reference/index.html</loc>
   </url>
   <url>
     <loc>https://dongzhuoer.github.io/paristools/reference/parse_loc.html</loc>
@@ -35,8 +56,5 @@
   </url>
   <url>
     <loc>https://dongzhuoer.github.io/paristools/reference/sam_to_loc_df.html</loc>
-  </url>
-  <url>
-    <loc>https://dongzhuoer.github.io/paristools/articles/paristools.html</loc>
   </url>
 </urlset>
