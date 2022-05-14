@@ -1,16 +1,16 @@
 Package: paristools
 Type: Package
 Title: Utility for working with PARIS data
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: person("Zhuoer", "Dong", email = "dongzhuoer@mail.nankai.edu.cn", 
     role = c("aut", "cre"))
 Description: refer to https://github.com/dongzhuoer/paristools
-URL: https://pkgdown.dongzhuoer.com/dongzhuoer/paristools, https://github.com/dongzhuoer/paristools
+URL: https://dongzhuoer.github.io/paristools
 BugReports: https://github.com/dongzhuoer/paristools/issues
-License: file LICENSE
+License: AGPL-3
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.0.2
+RoxygenNote: 7.2.0
 Roxygen: list(markdown = TRUE, roclets=c('rd', 'collate', 'namespace'))
 Imports:
     magrittr,
@@ -20,14 +20,8 @@ Imports:
     tibble,
     readr,
     Rcpp,
-    Rcppzhuoer
-Suggests:
-    prettydoc,
-    purrr,
-    ggplot2
-Remotes:
-    dongzhuoer/Rcppzhuoer
 VignetteBuilder: knitr, rmarkdown
+Depends: 
+    R (>= 4.1)
 LinkingTo: 
-    Rcpp,
-    Rcppzhuoer
+    Rcpp

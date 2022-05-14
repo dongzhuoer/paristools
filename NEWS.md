@@ -1,14 +1,7 @@
 
-# paristools 0.0.0.9000
-
-## Breaking changes
-
-1. feature 1
+# paristools 0.1.0
 
 ## New features
 
-1. feature 2
-
-## Minor improvements and fixes
-
-1. feature 3
+1. not depend on **Rcppzhuoer**
+1. compatible with new `tidyr::nest()`, obsolete `dplyr::mutate_at()`

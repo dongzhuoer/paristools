@@ -10,7 +10,7 @@
 #' 
 #' @examples
 #' sam_file <- system.file('extdata', 'Neat1_1.Aligend_trunc.sam', package = 'paristools')
-#' sam_file %>% read_sam() %>% sam_to_loc_df()
+#' sam_file |> read_sam() |> sam_to_loc_df()
 #' 
 #' @export
 NULL
@@ -35,8 +35,12 @@ sam_to_loc_df <- function(sam) {
 #' @keywords internal
 NULL
 
-get_strand <- function(flag) {
-    .Call(`_paristools_get_strand`, flag)
+as_tibble <- function(l) {
+    .Call(`_paristools_as_tibble`, l)
+}
+
+get_strand <- function(sam_flag) {
+    .Call(`_paristools_get_strand`, sam_flag)
 }
 
 test_as_loc_df <- function() {

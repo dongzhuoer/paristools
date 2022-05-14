@@ -1,13 +1,10 @@
-# paristools
-[![Build Status](https://travis-ci.com/dongzhuoer/paristools.svg?branch=master)](https://travis-ci.com/dongzhuoer/paristools)
-
-
-## Overview
+# Overview
 
 Utility for working with PARIS data
 
 
-## Installation
+
+# Installation
 
 ```r
 if (!('remotes' %in% .packages(T))) install.packages('remotes');
@@ -15,12 +12,7 @@ remotes::install_github('dongzhuoer/paristools');
 ```
 
 
-## Usage
 
-refer to `vignette('paristools')`.
+# For developers
 
-
-## extdata
-
-Refer to [xparis](https://github.com/dongzhuoer/xparis) for source of the data
-
+1. TO DO: implement `get_dg_coverage()` in C++, currently, we only run ~1000 DG, so I just use (very slow) R code.

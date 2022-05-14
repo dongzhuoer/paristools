@@ -1,6 +1,8 @@
 testthat::context('Testing main.cpp')
 setwd(here::here(''))  # workspace is reset per file
 
+
+
 testthat::test_that('parse_CIGAR()', {
     testthat::expect_true(T);
     
@@ -8,4 +10,3 @@ testthat::test_that('parse_CIGAR()', {
     test_parse_CIGAR('neat1', 16, 388, '4S31M', 4+31);
     test_parse_CIGAR('neat1', 256, 2534, '5M504N38M', 5+38);
 })
-

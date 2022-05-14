@@ -1,5 +1,4 @@
 // [[Rcpp::interfaces(r, cpp)]]
-
 #include <Rcpp.h>
 #include "common.hpp"
 
@@ -7,13 +6,31 @@ using namespace Rcpp;
 using paristools::loc;
 
 
-// get strand information from SAM's FLAG field
 
 // [[Rcpp::export]]
-std::string get_strand(const unsigned flag) {
+List as_tibble(List l) {
+    if (l.size() == 0) stop("not support empty list");
+    
+    unsigned len = as<GenericVector>(l[0]).size();
+    for (unsigned i {1}; i < l.size(); ++i) {
+        unsigned tmp = as<GenericVector>(l[i]).size();
+        if (len != tmp) 
+            stop(( std::to_string(i+1)+"th element should be of length "+std::to_string(len)+", not "+std::to_string(tmp) ).c_str());
+    }
+
+    List tbl = clone(l);
+    tbl.attr("class") = CharacterVector::create("tbl_df", "tbl", "data.frame");
+    tbl.attr("row.names") = IntegerVector::create(NA_INTEGER, -len);
+    return tbl;
+}
+
+
+
+// [[Rcpp::export]]
+std::string get_strand(const unsigned sam_flag) {
     const unsigned strand_bit {16u};
     
-    if (flag & strand_bit) 
+    if (sam_flag & strand_bit) 
         return "-";
     else 
         return "+";    
@@ -40,8 +57,10 @@ List as_loc_df(const std::list<loc>& loc_list) {
 
     List loc_df = List::create(chrom, strand, start, end);
     loc_df.attr("names") = CharacterVector::create("chrom", "strand", "start", "end");
-    return Rcppzhuoer::as_tibble(loc_df);
+    return as_tibble(loc_df);
 }
+
+
 
 // [[Rcpp::export]]
 List test_as_loc_df() {
@@ -83,7 +102,7 @@ List cal_coverage_impl(DataFrame chrom_loc_df) {
 
     List result = List::create(seq_len(genom_len), n_reads["+"], n_reads["-"]);
     result.attr("names") = CharacterVector::create("pos", "+", "-");
-    return Rcppzhuoer::as_tibble(result);
+    return as_tibble(result);
 }
 
 
@@ -92,6 +111,3 @@ List cal_coverage_impl(DataFrame chrom_loc_df) {
 int cpp_version() {
     return __cplusplus;
 }
-
-
-

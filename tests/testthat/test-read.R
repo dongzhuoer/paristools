@@ -1,6 +1,8 @@
 testthat::context('Testing read.R')
 setwd(here::here(''))  # workspace is reset per file
 
+
+
 testthat::test_that('read_sam()', {
     sam <- read_sam('inst/extdata/Neat1_1.Aligend_trunc.sam')
     
@@ -11,12 +13,11 @@ testthat::test_that('read_sam()', {
         c('QNAME', 'FLAG', 'RNAME', 'POS', 'MAPQ', 'CIGAR', 'RNEXT', 'PNEXT', 'TLEN', 'SEQ', 'QUAL')
     )
     testthat::expect_identical(
-        purrr::map_chr(sam, typeof) %>% purrr::set_names(NULL), 
+        purrr::map_chr(sam, typeof) |> purrr::set_names(NULL), 
         c("character", "integer", "character", "integer", "integer", "character", 
           "character", "integer", "integer", "character", "character")
     )
 })
-
 
 
 testthat::test_that('read_bed()', {
@@ -33,8 +34,7 @@ testthat::test_that('read_bed()', {
         c("chrom", "start", "end", "name", "score", "strand")
     )
     testthat::expect_identical(
-        purrr::map_chr(bed, typeof) %>% purrr::set_names(NULL), 
+        purrr::map_chr(bed, typeof) |> purrr::set_names(NULL), 
         c("character", "integer", "integer", "character", "integer", "character")
     )
 })
-

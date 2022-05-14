@@ -4,4 +4,3 @@
 // it include items exported by Rcpp & the package author, 
 //     the latter mainly contains template in header file
 #include "paristools_RcppExports.h"
-#include "paristools.hpp"

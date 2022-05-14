@@ -2,6 +2,7 @@ testthat::context('Testing coverage.R')
 setwd(here::here(''))  # workspace is reset per file
 
 
+
 testthat::test_that('cal_coverage()', {
     loc_df = tibble::tibble(chrom = c('I', 'II'), strand = c('+', '-'), start = c(1, 2), end = c(4, 3))
     
@@ -16,9 +17,10 @@ testthat::test_that('cal_coverage()', {
     )
 })
 
+
 testthat::test_that('get_dg_coverage()', {
     sam_file <- system.file('extdata', 'Neat1_1.Aligend_trunc.sam', package = 'paristools')
-    genome_coverage <- sam_file %>% read_sam() %>% sam_to_loc_df() %>% cal_coverage()
+    genome_coverage <- sam_file |> read_sam() |> sam_to_loc_df() |> cal_coverage()
     duplex_group <- read_duplexgroup('inst/extdata/Neat1_1.duplexgroup')
     dg_coverage <- get_dg_coverage(duplex_group, genome_coverage)
 

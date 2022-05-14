@@ -1,5 +1,4 @@
-destination: pkgdown/output
-url: https://pkgdown.dongzhuoer.com/dongzhuoer/paristools
+url: https://dongzhuoer.github.io/paristools
 
 authors:
     Zhuoer Dong:
@@ -13,17 +12,11 @@ reference:
   - title: "Reading various files"
     desc: >
       read `.sam`, `.bed`, `.duplexgroup` file
-    contents: 
+  - contents: 
       - starts_with("read_")
 
   - title: "Genome coverage of reads"
-    contents:
+  - contents:
       - sam_to_loc_df
       - cal_coverage
       - get_dg_coverage
-
-  - title: "Utility functions"
-    contents:
-
-
-

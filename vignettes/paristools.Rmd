@@ -13,8 +13,10 @@ vignette: >
 knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 ```
 
+
+
 ```{r message=FALSE}
-library(magrittr)
+library(paristools)
 library(ggplot2)
 ```
 
@@ -25,14 +27,14 @@ library(ggplot2)
 ```{r}
 sam_file <- system.file('extdata', 'Neat1_1.Aligend_trunc.sam', package = 'paristools')
 
-mapping <- paristools::read_sam(sam_file)
+mapping <- read_sam(sam_file)
 mapping
 ```
 
 ```{r}
 duplexgroup_file <- system.file('extdata', 'Neat1_1.duplexgroup', package = 'paristools');
 
-duplex_group <- paristools::read_duplexgroup(duplexgroup_file)
+duplex_group <- read_duplexgroup(duplexgroup_file)
 duplex_group
 ```
 
@@ -45,10 +47,10 @@ refer to `read_bed()`
 ## reference coverage
 
 ```{r}
-loc_df <- mapping %>% paristools::sam_to_loc_df() 
+loc_df <- mapping |> sam_to_loc_df() 
 loc_df
 
-ref_coverage <- loc_df %>% paristools::cal_coverage()
+ref_coverage <- loc_df |> cal_coverage()
 ref_coverage
 ```
 
@@ -62,12 +64,12 @@ ggplot(ref_coverage) +
 ## duplex group segment average coverage 
 
 ```{r}
-dg_coverage <- paristools::get_dg_coverage(duplex_group, ref_coverage)
+dg_coverage <- get_dg_coverage(duplex_group, ref_coverage)
 dg_coverage
 ```
 
 ```{r}
-dg_coverage %>% dplyr::select(-strand) %>% tidyr::spread('pair', 'n_reads') %>%
+dg_coverage |> dplyr::select(-strand) |> tidyr::spread('pair', 'n_reads') |>
     ggplot() + geom_point(aes(left, right))
 ```
 
@@ -76,6 +78,5 @@ dg_coverage %>% dplyr::select(-strand) %>% tidyr::spread('pair', 'n_reads') %>%
 # others 
 
 ```{r}
-mapping %>% dplyr::mutate(strand = purrr::map_chr(FLAG, paristools:::get_strand))
+mapping |> dplyr::mutate(strand = purrr::map_chr(FLAG, paristools:::get_strand))
 ```
-

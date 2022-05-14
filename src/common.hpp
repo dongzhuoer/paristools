@@ -1,5 +1,5 @@
-// [[Rcpp::depends(Rcppzhuoer)]]
-#include <Rcppzhuoer.h>
+#pragma once
+#include <Rcpp.h>
 
 namespace paristools {
     struct loc {
@@ -7,7 +7,5 @@ namespace paristools {
         std::string strand {};
         unsigned long start {};
         unsigned long end {};
-        // comment following in release
-        // Rcppzhuoer::foo<void> foo1 {}; 
     };
 }

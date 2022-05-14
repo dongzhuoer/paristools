@@ -1,12 +1,11 @@
 // [[Rcpp::interfaces(r, cpp)]]
-
 #include <Rcpp.h>
 #include "common.hpp"
 #include "utility.hpp"
 
 using namespace Rcpp;
-using Rcppzhuoer::paste;
 using paristools::loc;
+
 
 
 std::list<loc> parse_CIGAR(const std::string& chrom, unsigned flag, unsigned long pos, const std::string& CIGAR, unsigned long SEQ_len) {
@@ -39,7 +38,7 @@ std::list<loc> parse_CIGAR(const std::string& chrom, unsigned flag, unsigned lon
         }
     }
     
-    if(SEQ_len != len_by_CIGAR) stop(paste("parse ", CIGAR, ": expected ", len_by_CIGAR, ", actual ", SEQ_len).c_str());
+    if(SEQ_len != len_by_CIGAR) stop(( CIGAR+": expected "+std::to_string(len_by_CIGAR)+", actual "+std::to_string(SEQ_len) ).c_str());
     return loc_list;
 }
 
@@ -57,6 +56,7 @@ test_parse_CIGAR('neat1', 16, 123, '8M1S', 9)
 */
 
 
+
 //' @title find all mapped region in a `.sam` data.frame
 //' @name sam_to_loc_df
 //' 
@@ -66,7 +66,7 @@ test_parse_CIGAR('neat1', 16, 123, '8M1S', 9)
 //' 
 //' @examples
 //' sam_file <- system.file('extdata', 'Neat1_1.Aligend_trunc.sam', package = 'paristools')
-//' sam_file %>% read_sam() %>% sam_to_loc_df()
+//' sam_file |> read_sam() |> sam_to_loc_df()
 //' 
 //' @export
 
@@ -91,16 +91,16 @@ List sam_to_loc_df(DataFrame sam) {
     return as_loc_df(loc_list);
 }
 /*** R
-sam <- system.file('extdata', 'Neat1_1.Aligend_trunc.sam', package = 'paristools') %>% paristools::read_sam();
+sam <- system.file('extdata', 'Neat1_1.Aligend_trunc.sam', package = 'paristools') |> paristools::read_sam();
 
 sam_to_loc_df(head(sam))
-sam %>% sam_to_loc_df()
+sam |> sam_to_loc_df()
 library(tidyverse)
 
 # 1. remove 2+ N
 # 2. N < 3 ?
 # 3. S < 0.2 len
-sam %>% filter(str_detect(CIGAR, '0N')) 
+sam |> filter(str_detect(CIGAR, '0N')) 
 
-sam %>% mutate(x = nchar(SEQ)) %>% ggplot() + geom_bar(aes(x))
+sam |> mutate(x = nchar(SEQ)) |> ggplot() + geom_bar(aes(x))
 */

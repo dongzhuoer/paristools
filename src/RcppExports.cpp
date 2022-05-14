@@ -8,6 +8,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // test_parse_CIGAR
 List test_parse_CIGAR(String chrom, unsigned flag, unsigned long pos, String CIGAR, unsigned long SEQ_len);
 static SEXP _paristools_test_parse_CIGAR_try(SEXP chromSEXP, SEXP flagSEXP, SEXP posSEXP, SEXP CIGARSEXP, SEXP SEQ_lenSEXP) {
@@ -80,21 +85,55 @@ RcppExport SEXP _paristools_sam_to_loc_df(SEXP samSEXP) {
     UNPROTECT(1);
     return rcpp_result_gen;
 }
-// get_strand
-std::string get_strand(const unsigned flag);
-static SEXP _paristools_get_strand_try(SEXP flagSEXP) {
+// as_tibble
+List as_tibble(List l);
+static SEXP _paristools_as_tibble_try(SEXP lSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
-    Rcpp::traits::input_parameter< const unsigned >::type flag(flagSEXP);
-    rcpp_result_gen = Rcpp::wrap(get_strand(flag));
+    Rcpp::traits::input_parameter< List >::type l(lSEXP);
+    rcpp_result_gen = Rcpp::wrap(as_tibble(l));
     return rcpp_result_gen;
 END_RCPP_RETURN_ERROR
 }
-RcppExport SEXP _paristools_get_strand(SEXP flagSEXP) {
+RcppExport SEXP _paristools_as_tibble(SEXP lSEXP) {
     SEXP rcpp_result_gen;
     {
         Rcpp::RNGScope rcpp_rngScope_gen;
-        rcpp_result_gen = PROTECT(_paristools_get_strand_try(flagSEXP));
+        rcpp_result_gen = PROTECT(_paristools_as_tibble_try(lSEXP));
+    }
+    Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
+    if (rcpp_isInterrupt_gen) {
+        UNPROTECT(1);
+        Rf_onintr();
+    }
+    bool rcpp_isLongjump_gen = Rcpp::internal::isLongjumpSentinel(rcpp_result_gen);
+    if (rcpp_isLongjump_gen) {
+        Rcpp::internal::resumeJump(rcpp_result_gen);
+    }
+    Rboolean rcpp_isError_gen = Rf_inherits(rcpp_result_gen, "try-error");
+    if (rcpp_isError_gen) {
+        SEXP rcpp_msgSEXP_gen = Rf_asChar(rcpp_result_gen);
+        UNPROTECT(1);
+        Rf_error(CHAR(rcpp_msgSEXP_gen));
+    }
+    UNPROTECT(1);
+    return rcpp_result_gen;
+}
+// get_strand
+std::string get_strand(const unsigned sam_flag);
+static SEXP _paristools_get_strand_try(SEXP sam_flagSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< const unsigned >::type sam_flag(sam_flagSEXP);
+    rcpp_result_gen = Rcpp::wrap(get_strand(sam_flag));
+    return rcpp_result_gen;
+END_RCPP_RETURN_ERROR
+}
+RcppExport SEXP _paristools_get_strand(SEXP sam_flagSEXP) {
+    SEXP rcpp_result_gen;
+    {
+        Rcpp::RNGScope rcpp_rngScope_gen;
+        rcpp_result_gen = PROTECT(_paristools_get_strand_try(sam_flagSEXP));
     }
     Rboolean rcpp_isInterrupt_gen = Rf_inherits(rcpp_result_gen, "interrupted-error");
     if (rcpp_isInterrupt_gen) {
@@ -221,6 +260,7 @@ static int _paristools_RcppExport_validate(const char* sig) {
     if (signatures.empty()) {
         signatures.insert("List(*test_parse_CIGAR)(String,unsigned,unsigned long,String,unsigned long)");
         signatures.insert("List(*sam_to_loc_df)(DataFrame)");
+        signatures.insert("List(*as_tibble)(List)");
         signatures.insert("std::string(*get_strand)(const unsigned)");
         signatures.insert("List(*test_as_loc_df)()");
         signatures.insert("List(*cal_coverage_impl)(DataFrame)");
@@ -233,6 +273,7 @@ static int _paristools_RcppExport_validate(const char* sig) {
 RcppExport SEXP _paristools_RcppExport_registerCCallable() { 
     R_RegisterCCallable("paristools", "_paristools_test_parse_CIGAR", (DL_FUNC)_paristools_test_parse_CIGAR_try);
     R_RegisterCCallable("paristools", "_paristools_sam_to_loc_df", (DL_FUNC)_paristools_sam_to_loc_df_try);
+    R_RegisterCCallable("paristools", "_paristools_as_tibble", (DL_FUNC)_paristools_as_tibble_try);
     R_RegisterCCallable("paristools", "_paristools_get_strand", (DL_FUNC)_paristools_get_strand_try);
     R_RegisterCCallable("paristools", "_paristools_test_as_loc_df", (DL_FUNC)_paristools_test_as_loc_df_try);
     R_RegisterCCallable("paristools", "_paristools_cal_coverage_impl", (DL_FUNC)_paristools_cal_coverage_impl_try);
@@ -244,6 +285,7 @@ RcppExport SEXP _paristools_RcppExport_registerCCallable() {
 static const R_CallMethodDef CallEntries[] = {
     {"_paristools_test_parse_CIGAR", (DL_FUNC) &_paristools_test_parse_CIGAR, 5},
     {"_paristools_sam_to_loc_df", (DL_FUNC) &_paristools_sam_to_loc_df, 1},
+    {"_paristools_as_tibble", (DL_FUNC) &_paristools_as_tibble, 1},
     {"_paristools_get_strand", (DL_FUNC) &_paristools_get_strand, 1},
     {"_paristools_test_as_loc_df", (DL_FUNC) &_paristools_test_as_loc_df, 0},
     {"_paristools_cal_coverage_impl", (DL_FUNC) &_paristools_cal_coverage_impl, 1},

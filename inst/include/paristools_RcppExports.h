@@ -66,7 +66,28 @@ namespace paristools {
         return Rcpp::as<List >(rcpp_result_gen);
     }
 
-    inline std::string get_strand(const unsigned flag) {
+    inline List as_tibble(List l) {
+        typedef SEXP(*Ptr_as_tibble)(SEXP);
+        static Ptr_as_tibble p_as_tibble = NULL;
+        if (p_as_tibble == NULL) {
+            validateSignature("List(*as_tibble)(List)");
+            p_as_tibble = (Ptr_as_tibble)R_GetCCallable("paristools", "_paristools_as_tibble");
+        }
+        RObject rcpp_result_gen;
+        {
+            RNGScope RCPP_rngScope_gen;
+            rcpp_result_gen = p_as_tibble(Shield<SEXP>(Rcpp::wrap(l)));
+        }
+        if (rcpp_result_gen.inherits("interrupted-error"))
+            throw Rcpp::internal::InterruptedException();
+        if (Rcpp::internal::isLongjumpSentinel(rcpp_result_gen))
+            throw Rcpp::LongjumpException(rcpp_result_gen);
+        if (rcpp_result_gen.inherits("try-error"))
+            throw Rcpp::exception(Rcpp::as<std::string>(rcpp_result_gen).c_str());
+        return Rcpp::as<List >(rcpp_result_gen);
+    }
+
+    inline std::string get_strand(const unsigned sam_flag) {
         typedef SEXP(*Ptr_get_strand)(SEXP);
         static Ptr_get_strand p_get_strand = NULL;
         if (p_get_strand == NULL) {
@@ -76,7 +97,7 @@ namespace paristools {
         RObject rcpp_result_gen;
         {
             RNGScope RCPP_rngScope_gen;
-            rcpp_result_gen = p_get_strand(Shield<SEXP>(Rcpp::wrap(flag)));
+            rcpp_result_gen = p_get_strand(Shield<SEXP>(Rcpp::wrap(sam_flag)));
         }
         if (rcpp_result_gen.inherits("interrupted-error"))
             throw Rcpp::internal::InterruptedException();
